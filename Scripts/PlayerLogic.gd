@@ -4,6 +4,7 @@ extends RigidBody2D
 
 @onready var Particles:GPUParticles2D = $Particles
 @onready var BulletPostition:Node2D = $BulletPosition
+@onready var InvincibleTimer:Timer = $InvincibleTimer
 
 @export_category('Movement')
 @export var Speed:float = 150.0
@@ -12,6 +13,8 @@ extends RigidBody2D
 @export var Health:float = 100.0
 @export var ContactDamage:float = 50.0
 
+var Invincible:bool = false
+
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		Shoot()
@@ -19,22 +22,19 @@ func _physics_process(delta):
 	var rot = Input.get_axis("ui_left", "ui_right")
 	var vel = Input.get_axis('ui_up', 'ui_down') 
 	
-	
-#	if rot:
-#		rotation += rot * RotationSpeed * delta
-	
 	if rot:
 		apply_torque(rot * RotationSpeed * delta)
 	
 	if vel:
 		Particles.emitting = true
 		apply_central_force(-transform.x.normalized() * vel * Speed)
-		#velocity = lerp(velocity, -transform.x.normalized() * vel * SPEED, 0.01)
 	else:
 		Particles.emitting = false
-		#velocity = lerp(velocity,Vector2.ZERO,0.01)
-		
-	#move_and_slide()
+	print(linear_velocity.length())
+
+func AddDamage(DamageValue:float)->void:
+	if !Invincible:
+		SetHealth(Health - DamageValue)
 
 func SetHealth(value:float)->void:
 	Health = value
@@ -50,7 +50,12 @@ func Shoot():
 	Bullet.translate(BulletPostition.global_position)
 	Bullet.rotation = rotation
 
-
 func _on_hurt_box_body_entered(body):
 	if body != self:
-		SetHealth(Health-ContactDamage)
+		if linear_velocity.length() > 100:
+			AddDamage(ContactDamage)
+			Invincible = true
+			InvincibleTimer.start()
+
+func _on_invincible_timer_timeout():
+	Invincible = false

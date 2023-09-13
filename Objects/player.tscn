@@ -1,6 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://do2avrg4ds25w"]
+[gd_scene load_steps=8 format=3 uid="uid://do2avrg4ds25w"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerLogic.gd" id="1_kt0p5"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_un3k1"]
+friction = 0.0
+bounce = 0.1
 
 [sub_resource type="Gradient" id="Gradient_mmr0o"]
 offsets = PackedFloat32Array(0.297229, 1)
@@ -33,6 +37,7 @@ color_ramp = SubResource("GradientTexture1D_gk5bi")
 
 [node name="Player" type="RigidBody2D"]
 inertia = 1.0
+physics_material_override = SubResource("PhysicsMaterial_un3k1")
 gravity_scale = 0.0
 script = ExtResource("1_kt0p5")
 
@@ -58,4 +63,7 @@ lifetime = 0.5
 [node name="BulletPosition" type="Node2D" parent="."]
 position = Vector2(19, 0)
 
+[node name="InvincibleTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
+[connection signal="timeout" from="InvincibleTimer" to="." method="_on_invincible_timer_timeout"]

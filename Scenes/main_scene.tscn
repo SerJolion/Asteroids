@@ -8,7 +8,8 @@
 
 [node name="Player" parent="." instance=ExtResource("1_hbijx")]
 position = Vector2(389, 221)
-inertia = 1.0
+mass = 5.0
+Speed = 300.0
 RotationSpeed = 300.0
 
 [node name="Bullet" parent="." instance=ExtResource("2_fnhwu")]
