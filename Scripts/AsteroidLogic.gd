@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 @onready var AsteroidMediumScene:PackedScene = load("res://Objects/AsteroidMedium.tscn")
+@onready var DestroyParticlesMaterial:ParticleProcessMaterial = load('res://Materials/Particles/AsteroidDestroy.material')
 
 @export var Speed:float = 200.0
 @export var RotationSpeed:float = 150.0
@@ -43,4 +44,5 @@ func Destroy():
 			get_parent().add_child(NewSpawnObject)
 			var Position:Vector2 = position + Vector2(randi_range(-SpawnPositionOffset,SpawnPositionOffset), randi_range(-SpawnPositionOffset,SpawnPositionOffset))
 			NewSpawnObject.translate(Position)
+	get_parent().AddParticlesObject(50, true, true, 1.5, DestroyParticlesMaterial, position)
 	queue_free()

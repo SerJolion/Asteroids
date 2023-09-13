@@ -1,40 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://do2avrg4ds25w"]
+[gd_scene load_steps=4 format=3 uid="uid://do2avrg4ds25w"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerLogic.gd" id="1_kt0p5"]
+[ext_resource type="Material" uid="uid://b2iayc63jw1q5" path="res://Materials/Particles/ShipFire.material" id="2_vig8w"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_un3k1"]
 friction = 0.5
 rough = true
 bounce = 0.1
-
-[sub_resource type="Gradient" id="Gradient_mmr0o"]
-offsets = PackedFloat32Array(0.297229, 1)
-colors = PackedColorArray(1, 0.996535, 0.943663, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_gk5bi"]
-gradient = SubResource("Gradient_mmr0o")
-
-[sub_resource type="Curve" id="Curve_4ujcw"]
-_data = [Vector2(0.00341297, 0.894737), 0.0, 0.0, 0, 0, Vector2(1, 0.2), -1.87256, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_rox0m"]
-curve = SubResource("Curve_4ujcw")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bo5wu"]
-emission_shape = 3
-emission_box_extents = Vector3(1, 3, 1)
-particle_flag_disable_z = true
-direction = Vector3(-1, 0, 0)
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 10.0
-initial_velocity_max = 20.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-scale_min = 3.0
-scale_max = 3.0
-scale_curve = SubResource("CurveTexture_rox0m")
-color_ramp = SubResource("GradientTexture1D_gk5bi")
 
 [node name="Player" type="RigidBody2D"]
 inertia = 1.0
@@ -60,7 +32,7 @@ polygon = PackedVector2Array(10, 0, -6, -8, -6, 8)
 [node name="Particles" type="GPUParticles2D" parent="."]
 position = Vector2(-7, 0)
 amount = 20
-process_material = SubResource("ParticleProcessMaterial_bo5wu")
+process_material = ExtResource("2_vig8w")
 lifetime = 0.5
 
 [node name="BulletPosition" type="Node2D" parent="."]
