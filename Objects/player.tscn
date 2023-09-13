@@ -36,10 +36,12 @@ scale_curve = SubResource("CurveTexture_rox0m")
 color_ramp = SubResource("GradientTexture1D_gk5bi")
 
 [node name="Player" type="RigidBody2D"]
-inertia = 1.0
+inertia = 0.5
 physics_material_override = SubResource("PhysicsMaterial_un3k1")
 gravity_scale = 0.0
 script = ExtResource("1_kt0p5")
+Speed = 200.0
+RotationSpeed = 200.0
 
 [node name="Visual" type="Polygon2D" parent="."]
 polygon = PackedVector2Array(10, 0, -6, -8, -6, 8)

@@ -1,5 +1,8 @@
 extends RigidBody2D
 
+signal HealthChanged(NewValue, MaxValue)
+signal EnergyChanged(NewValue, MaxValue)
+
 @onready var BulletScene:PackedScene = load("res://Objects/Bullet.tscn")
 
 @onready var Particles:GPUParticles2D = $Particles
@@ -13,7 +16,7 @@ extends RigidBody2D
 @export var MaxHealth:float = 100.0
 @export var MaxEnergy:float = 100.0
 @export var ContactDamage:float = 50.0
-@export var EnergyRestoreSpeed:float = 0.01
+@export var EnergyRestoreSpeed:float = 0.1
 @export var ShootEnergyCost: float = 10.0
 
 var Health:float = 1 : set = SetHealth
@@ -47,11 +50,13 @@ func AddDamage(DamageValue:float)->void:
 		SetHealth(Health - DamageValue)
 
 func SetHealth(value:float)->void:
+	HealthChanged.emit(value, MaxHealth)
 	Health = value
 	if Health <= 0:
 		Destroy()
 
 func SetEnergy(value:float)->void:
+	EnergyChanged.emit(value, MaxEnergy)
 	Energy = value
 
 func Destroy():
@@ -59,6 +64,7 @@ func Destroy():
 
 func Shoot():
 	if Energy >= ShootEnergyCost:
+		Energy -= ShootEnergyCost
 		var Bullet:Node2D = BulletScene.instantiate()
 		get_parent().add_child(Bullet)
 		Bullet.translate(BulletPostition.global_position)
