@@ -1,15 +1,16 @@
-extends CharacterBody2D
+extends RigidBody2D
 
 @onready var BulletScene:PackedScene = load("res://Objects/Bullet.tscn")
 
 @onready var Particles:GPUParticles2D = $Particles
 @onready var BulletPostition:Node2D = $BulletPosition
 
+@export_category('Movement')
+@export var Speed:float = 150.0
+@export var RotationSpeed:float = 150.0
+@export_category('Gameplay')
 @export var Health:float = 100.0
 @export var ContactDamage:float = 50.0
-
-const SPEED = 150
-const ROTATION_SPEED = 5
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
@@ -19,17 +20,21 @@ func _physics_process(delta):
 	var vel = Input.get_axis('ui_up', 'ui_down') 
 	
 	
+#	if rot:
+#		rotation += rot * RotationSpeed * delta
+	
 	if rot:
-		rotation += rot * ROTATION_SPEED * delta
+		apply_torque(rot * RotationSpeed * delta)
 	
 	if vel:
 		Particles.emitting = true
-		velocity = lerp(velocity, -transform.x.normalized() * vel * SPEED, 0.01)
+		apply_central_force(-transform.x.normalized() * vel * Speed)
+		#velocity = lerp(velocity, -transform.x.normalized() * vel * SPEED, 0.01)
 	else:
 		Particles.emitting = false
-		velocity = lerp(velocity,Vector2.ZERO,0.01)
+		#velocity = lerp(velocity,Vector2.ZERO,0.01)
 		
-	move_and_slide()
+	#move_and_slide()
 
 func SetHealth(value:float)->void:
 	Health = value

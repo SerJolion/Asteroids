@@ -31,9 +31,9 @@ scale_max = 3.0
 scale_curve = SubResource("CurveTexture_rox0m")
 color_ramp = SubResource("GradientTexture1D_gk5bi")
 
-[node name="Player" type="CharacterBody2D"]
-motion_mode = 1
-platform_on_leave = 2
+[node name="Player" type="RigidBody2D"]
+inertia = 1.0
+gravity_scale = 0.0
 script = ExtResource("1_kt0p5")
 
 [node name="Visual" type="Polygon2D" parent="."]

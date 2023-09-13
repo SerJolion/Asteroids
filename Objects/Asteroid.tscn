@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/AsteroidLogic.gd" id="1_a6su0"]
 
 [node name="Asteroid" type="RigidBody2D"]
+mass = 100.0
 gravity_scale = 0.0
 script = ExtResource("1_a6su0")
 
