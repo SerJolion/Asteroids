@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://wjsf0l4dpopa"]
+
+[ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_4w7ed"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_thhl3"]
+size = Vector2(20, 6)
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_4w7ed")
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("RectangleShape2D_thhl3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -3.0
+offset_right = 10.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

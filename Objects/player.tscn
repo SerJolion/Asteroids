@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://do2avrg4ds25w"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerLogic.gd" id="1_kt0p5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_edves"]
+
+[sub_resource type="Gradient" id="Gradient_mmr0o"]
+colors = PackedColorArray(1, 0.996535, 0.943663, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gk5bi"]
+gradient = SubResource("Gradient_mmr0o")
+
+[sub_resource type="Curve" id="Curve_4ujcw"]
+_data = [Vector2(0.00341297, 0.894737), 0.0, 0.0, 0, 0, Vector2(1, 0.2), -1.87256, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rox0m"]
+curve = SubResource("Curve_4ujcw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bo5wu"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 3.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_rox0m")
+color_ramp = SubResource("GradientTexture1D_gk5bi")
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_kt0p5")
+
+[node name="Colider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_edves")
+
+[node name="Visual" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(10, 0, -6, -8, -6, -3, -3, -3, -3, 4, -6, 4, -6, 8)
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+position = Vector2(-4, 0)
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_bo5wu")
+
+[node name="BulletPosition" type="Node2D" parent="."]
+position = Vector2(22, 0)
