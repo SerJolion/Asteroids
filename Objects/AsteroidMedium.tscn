@@ -3,15 +3,19 @@
 [ext_resource type="Script" path="res://Scripts/AsteroidLogic.gd" id="1_1y7sm"]
 
 [node name="AsteroidMedium" type="RigidBody2D"]
-mass = 50.0
+mass = 5.0
+inertia = 5.0
 gravity_scale = 0.0
 script = ExtResource("1_1y7sm")
-Speed = 400.0
+Speed = 50.0
+RotationSpeed = 2.0
 Health = 50.0
 
 [node name="Colider" type="Line2D" parent="."]
-points = PackedVector2Array(-19, -12, 4, -28, 23, -23, 35, 0, 10, 21, 0, -3, -20, -14)
+position = Vector2(-9, 10)
+points = PackedVector2Array(-19, -12, 4, -28, 23, -23, 35, 0, 16, 13, 0, -3, -20, -14)
 width = 5.0
 
 [node name="Visual" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-22, -13, 4, -31, 25, -25, 38, 1, 9, 25, -2, -1)
+position = Vector2(-9, 10)
+polygon = PackedVector2Array(-22, -13, 4, -31, 25, -25, 38, 1, 15, 16, -2, -1)

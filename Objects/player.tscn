@@ -3,7 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/PlayerLogic.gd" id="1_kt0p5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_un3k1"]
-friction = 0.0
+friction = 0.5
+rough = true
 bounce = 0.1
 
 [sub_resource type="Gradient" id="Gradient_mmr0o"]
@@ -36,7 +37,7 @@ scale_curve = SubResource("CurveTexture_rox0m")
 color_ramp = SubResource("GradientTexture1D_gk5bi")
 
 [node name="Player" type="RigidBody2D"]
-inertia = 0.5
+inertia = 1.0
 physics_material_override = SubResource("PhysicsMaterial_un3k1")
 gravity_scale = 0.0
 script = ExtResource("1_kt0p5")

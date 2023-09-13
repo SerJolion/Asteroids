@@ -16,7 +16,7 @@ signal EnergyChanged(NewValue, MaxValue)
 @export var MaxHealth:float = 100.0
 @export var MaxEnergy:float = 100.0
 @export var ContactDamage:float = 50.0
-@export var EnergyRestoreSpeed:float = 0.1
+@export var EnergyRestoreSpeed:float = 0.5
 @export var ShootEnergyCost: float = 10.0
 
 var Health:float = 1 : set = SetHealth
