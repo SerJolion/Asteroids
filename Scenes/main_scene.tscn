@@ -14,4 +14,16 @@ scale = Vector2(2, 2)
 position = Vector2(46, 224)
 
 [node name="Asteroid" parent="." instance=ExtResource("3_o5hw2")]
-position = Vector2(638, 284)
+position = Vector2(767, 280)
+
+[node name="Asteroid2" parent="." instance=ExtResource("3_o5hw2")]
+position = Vector2(378, 123)
+
+[node name="Asteroid3" parent="." instance=ExtResource("3_o5hw2")]
+position = Vector2(195, 484)
+
+[node name="Asteroid4" parent="." instance=ExtResource("3_o5hw2")]
+position = Vector2(568, 517)
+
+[node name="Asteroid5" parent="." instance=ExtResource("3_o5hw2")]
+position = Vector2(967, 508)

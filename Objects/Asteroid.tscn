@@ -1,7 +1,10 @@
-[gd_scene format=3 uid="uid://dl81odprhwp4t"]
+[gd_scene load_steps=2 format=3 uid="uid://dl81odprhwp4t"]
+
+[ext_resource type="Script" path="res://Scripts/AsteroidLogic.gd" id="1_a6su0"]
 
 [node name="Asteroid" type="RigidBody2D"]
 gravity_scale = 0.0
+script = ExtResource("1_a6su0")
 
 [node name="Colider" type="Line2D" parent="."]
 points = PackedVector2Array(-38, -35, 26, -80, 82, -28, 70, 28, 13, 40, -34, 22, -37, -37)
