@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://df0pvqa8am0gy"]
+[gd_scene load_steps=4 format=3 uid="uid://df0pvqa8am0gy"]
 
 [ext_resource type="PackedScene" uid="uid://do2avrg4ds25w" path="res://Objects/player.tscn" id="1_hbijx"]
 [ext_resource type="PackedScene" uid="uid://wjsf0l4dpopa" path="res://Objects/Bullet.tscn" id="2_fnhwu"]
+[ext_resource type="PackedScene" uid="uid://dl81odprhwp4t" path="res://Objects/Asteroid.tscn" id="3_o5hw2"]
 
 [node name="MainScene" type="Node2D"]
 
@@ -11,3 +12,6 @@ scale = Vector2(2, 2)
 
 [node name="Bullet" parent="." instance=ExtResource("2_fnhwu")]
 position = Vector2(46, 224)
+
+[node name="Asteroid" parent="." instance=ExtResource("3_o5hw2")]
+position = Vector2(638, 284)
