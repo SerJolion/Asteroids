@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://mjhb3l00ei48"]
+
+[ext_resource type="Script" path="res://Scripts/AsteroidLogic.gd" id="1_1y7sm"]
+
+[node name="AsteroidMedium" type="RigidBody2D"]
+mass = 50.0
+gravity_scale = 0.0
+script = ExtResource("1_1y7sm")
+Speed = 400.0
+Health = 50.0
+
+[node name="Colider" type="Line2D" parent="."]
+points = PackedVector2Array(-19, -12, 4, -28, 23, -23, 35, 0, 10, 21, 0, -3, -20, -14)
+width = 5.0
+
+[node name="Visual" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-22, -13, 4, -31, 25, -25, 38, 1, 9, 25, -2, -1)
