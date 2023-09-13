@@ -1,15 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://df0pvqa8am0gy"]
+[gd_scene load_steps=6 format=3 uid="uid://df0pvqa8am0gy"]
 
 [ext_resource type="Script" path="res://Scripts/WorldLogic.gd" id="1_iph1a"]
 [ext_resource type="Script" path="res://Scripts/GameLogic.gd" id="1_j73ng"]
 [ext_resource type="PackedScene" uid="uid://dl81odprhwp4t" path="res://Objects/AsteroidLarge.tscn" id="2_nbj44"]
 [ext_resource type="PackedScene" uid="uid://d4mhe8clsfr08" path="res://Objects/UserInterfase.tscn" id="4_qcs80"]
 
+[sub_resource type="Curve2D" id="Curve2D_n0bfm"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -85, -108, 0, 0, 0, 0, 1261, -128, 0, 0, 0, 0, 1316, 701, 0, 0, 0, 0, -146, 713, 0, 0, 0, 0, -85, -108)
+}
+point_count = 5
+
 [node name="Root" type="Node"]
 script = ExtResource("1_j73ng")
 
+[node name="AteroidSpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [node name="World" type="Node2D" parent="."]
 script = ExtResource("1_iph1a")
+
+[node name="PlayerStartPosition" type="Marker2D" parent="World"]
+position = Vector2(589, 322)
+
+[node name="AsteroidSpawnPath" type="Path2D" parent="World"]
+curve = SubResource("Curve2D_n0bfm")
+
+[node name="AsteroidSpawPoint" type="PathFollow2D" parent="World/AsteroidSpawnPath"]
+position = Vector2(-85, -108)
+rotation = -0.0148577
 
 [node name="AsteroidLarge" parent="World" instance=ExtResource("2_nbj44")]
 position = Vector2(191, 176)
@@ -20,9 +40,8 @@ position = Vector2(566, 175)
 [node name="AsteroidLarge3" parent="World" instance=ExtResource("2_nbj44")]
 position = Vector2(831, 422)
 
-[node name="PlayerStartPosition" type="Marker2D" parent="World"]
-position = Vector2(589, 322)
-
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 
 [node name="UserInterfase" parent="InterfaceLayer" instance=ExtResource("4_qcs80")]
+
+[connection signal="timeout" from="AteroidSpawnTimer" to="." method="_on_ateroid_spawn_timer_timeout"]

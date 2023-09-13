@@ -45,4 +45,4 @@ func Destroy():
 			var Position:Vector2 = position + Vector2(randi_range(-SpawnPositionOffset,SpawnPositionOffset), randi_range(-SpawnPositionOffset,SpawnPositionOffset))
 			NewSpawnObject.translate(Position)
 	get_parent().AddParticlesObject(50, true, true, 1.5, DestroyParticlesMaterial, position)
-	queue_free()
+	call_deferred('queue_free')

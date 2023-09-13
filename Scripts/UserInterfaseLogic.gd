@@ -15,7 +15,7 @@ func _process(delta):
 
 func Init(player:Node2D)->void:
 	Player = player
-	Player.HealthChanged.connect(UpdateEnergyBar)
+	Player.HealthChanged.connect(UpdateHealthBar)
 	Player.EnergyChanged.connect(UpdateEnergyBar)
 
 func UpdateHealthBar(value:float, MaxValue:float)->void:

@@ -37,7 +37,7 @@ func _physics_process(delta):
 	
 	if rot:
 		apply_torque(rot * RotationSpeed * delta)
-	
+
 	if vel:
 		Particles.emitting = true
 		apply_central_force(-transform.x.normalized() * vel * Speed)

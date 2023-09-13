@@ -5,6 +5,7 @@ extends Node2D
 
 @onready var Player:RigidBody2D = null
 @onready var PlayerStartPosition:Marker2D = $PlayerStartPosition
+@onready var AsteroidSpawnPoint:PathFollow2D = $AsteroidSpawnPath/AsteroidSpawPoint
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +21,14 @@ func _process(delta):
 
 func GetPlayer()->RigidBody2D:
 	return Player
+
+func SpawnAsteroid()->void:
+	var NewAsteroid:Node2D = AsteroidSCene.instantiate()
+	AsteroidSpawnPoint.progress_ratio = randf()
+	add_child(NewAsteroid)
+	NewAsteroid.translate(AsteroidSpawnPoint.position)
+	NewAsteroid.SetDirection((Player.position-AsteroidSpawnPoint.position).normalized())
+	
 
 func AddParticlesObject(Count:int, OneShot:bool, LifeTime:float, Explosion:bool ,ParticleMaterial:ParticleProcessMaterial, Position:Vector2)->void:
 	var Particles:GPUParticles2D = GPUParticles2D.new()
