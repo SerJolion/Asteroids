@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var BulletPostition:Node2D = $BulletPosition
 
 @export var Health:float = 100.0
+@export var ContactDamage:float = 50.0
 
 const SPEED = 150
 const ROTATION_SPEED = 5
@@ -30,8 +31,21 @@ func _physics_process(delta):
 		
 	move_and_slide()
 
+func SetHealth(value:float)->void:
+	Health = value
+	if Health <= 0:
+		Destroy()
+
+func Destroy():
+	queue_free()
+
 func Shoot():
 	var Bullet:Node2D = BulletScene.instantiate()
 	get_parent().add_child(Bullet)
 	Bullet.translate(BulletPostition.global_position)
 	Bullet.rotation = rotation
+
+
+func _on_hurt_box_body_entered(body):
+	if body != self:
+		SetHealth(Health-ContactDamage)

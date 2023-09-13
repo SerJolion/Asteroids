@@ -3,7 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/PlayerLogic.gd" id="1_kt0p5"]
 
 [sub_resource type="Gradient" id="Gradient_mmr0o"]
-colors = PackedColorArray(1, 0.996535, 0.943663, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0.297229, 1)
+colors = PackedColorArray(1, 0.996535, 0.943663, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_gk5bi"]
 gradient = SubResource("Gradient_mmr0o")
@@ -16,6 +17,8 @@ point_count = 2
 curve = SubResource("Curve_4ujcw")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bo5wu"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 3, 1)
 particle_flag_disable_z = true
 direction = Vector3(-1, 0, 0)
 gravity = Vector3(0, 0, 0)
@@ -30,19 +33,29 @@ color_ramp = SubResource("GradientTexture1D_gk5bi")
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
+platform_on_leave = 2
 script = ExtResource("1_kt0p5")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(10, 0, -6, -8, -6, 8, 2.45, 3.775)
-
 [node name="Visual" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(10, 0, -6, -8, -6, -3, -3, -3, -3, 4, -6, 4, -6, 8)
+polygon = PackedVector2Array(10, 0, -6, -8, -6, 8)
+
+[node name="Colider" type="CollisionPolygon2D" parent="."]
+self_modulate = Color(0, 1, 0, 1)
+polygon = PackedVector2Array(9, 0, -5, -7, -5, 7)
+
+[node name="HurtBox" type="Area2D" parent="."]
+self_modulate = Color(0.266667, 0.505882, 0.376471, 1)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="HurtBox"]
+polygon = PackedVector2Array(10, 0, -6, -8, -6, 8)
 
 [node name="Particles" type="GPUParticles2D" parent="."]
-position = Vector2(-4, 0)
-emitting = false
-amount = 10
+position = Vector2(-7, 0)
+amount = 20
 process_material = SubResource("ParticleProcessMaterial_bo5wu")
+lifetime = 0.5
 
 [node name="BulletPosition" type="Node2D" parent="."]
 position = Vector2(19, 0)
+
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
