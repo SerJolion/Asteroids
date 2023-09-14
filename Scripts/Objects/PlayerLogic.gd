@@ -4,10 +4,12 @@ signal HealthChanged(NewValue, MaxValue)
 signal EnergyChanged(NewValue, MaxValue)
 
 @onready var BulletScene:PackedScene = load("res://Objects/Bullet.tscn")
+@onready var PewSound:AudioStreamMP3 = load("res://Sound/pew.mp3")
 
 @onready var Particles:GPUParticles2D = $Particles
 @onready var BulletPostition:Node2D = $BulletPosition
 @onready var InvincibleTimer:Timer = $InvincibleTimer
+@onready var AudioPlayer:AudioStreamPlayer2D = $AudioPlayer
 @onready var DisplayWidth:int =  ProjectSettings.get_setting("display/window/size/viewport_width")
 @onready var DisplayHeight:int = ProjectSettings.get_setting("display/window/size/viewport_height")
 
@@ -25,7 +27,6 @@ var Health:float = 1 : set = SetHealth
 var Energy:float = 1 : set = SetEnergy
 
 var Invincible:bool = false
-
 
 func _ready():
 	Health = MaxHealth
@@ -85,10 +86,12 @@ func Shoot():
 		get_parent().add_child(Bullet)
 		Bullet.translate(BulletPostition.global_position)
 		Bullet.rotation = rotation
+		AudioPlayer.stream = PewSound
+		AudioPlayer.play()
 
 func _on_hurt_box_body_entered(body):
 	if body != self:
-		if linear_velocity.length() > 100:
+		if linear_velocity.length() > 50:
 			AddDamage(ContactDamage)
 			Invincible = true
 			InvincibleTimer.start()

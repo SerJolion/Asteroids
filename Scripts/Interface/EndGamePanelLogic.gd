@@ -8,14 +8,14 @@ extends Control
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 func SetTitle(value:String, TitleColor:Color=Color.WHITE)->void:
-	Title.modulate = TitleColor
-	Title.text = value
+	if Title != null:
+		Title.modulate = TitleColor
+		Title.text = value
 
 func _on_restart_button_pressed():
 	pass # Replace with function body.

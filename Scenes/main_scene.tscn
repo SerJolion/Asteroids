@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://d4mhe8clsfr08" path="res://Objects/Interfaces/UserInterfase.tscn" id="4_qcs80"]
 
 [sub_resource type="Curve2D" id="Curve2D_n0bfm"]
+bake_interval = 10.0
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1316, -128, 0, 0, 0, 0, 1316, 701, 0, 0, 0, 0, -146, 713, 0, 0, 0, 0, -150, -127, 0, 0, 0, 0, 1316, -128)
+"points": PackedVector2Array(0, 0, 0, 0, 1136, 848, 0, 0, 0, 0, -95, 857, 0, 0, 0, 0, -93, -80, 0, 0, 0, 0, 1128, -90, 0, 0, 0, 0, 1136, 848)
 }
 point_count = 5
 
@@ -31,8 +32,8 @@ position = Vector2(589, 322)
 curve = SubResource("Curve2D_n0bfm")
 
 [node name="AsteroidSpawPoint" type="PathFollow2D" parent="World/AsteroidSpawnPath"]
-position = Vector2(1316, -128)
-rotation = 1.5708
+position = Vector2(1136, 848)
+rotation = 3.13428
 
 [node name="AsteroidLarge" parent="World" instance=ExtResource("2_nbj44")]
 position = Vector2(191, 176)

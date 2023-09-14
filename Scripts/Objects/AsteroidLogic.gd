@@ -13,17 +13,11 @@ extends RigidBody2D
 
 var Direction:Vector2
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	rotation = randf_range(0,360)
 	Direction = Vector2(1,0).rotated(randf()*2.0*PI)
 	constant_torque = RotationSpeed
 	constant_force = Direction * Speed
-
-func _physics_process(delta):
-	pass
-	#apply_central_force(Direction.normalized()*Speed*delta)
-	#apply_torque(RotationSpeed*delta)
 
 func _exit_tree():
 	get_parent().ObjectDestroed(10)

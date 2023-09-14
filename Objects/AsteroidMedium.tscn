@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://mjhb3l00ei48"]
 
-[ext_resource type="Script" path="res://Scripts/AsteroidLogic.gd" id="1_1y7sm"]
+[ext_resource type="Script" path="res://Scripts/Objects/AsteroidLogic.gd" id="1_1y7sm"]
 
 [node name="AsteroidMedium" type="RigidBody2D"]
 mass = 5.0

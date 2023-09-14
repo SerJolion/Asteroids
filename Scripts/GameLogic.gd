@@ -1,7 +1,6 @@
 extends Node
 
-@export var VinScore:int = 20
-
+@export var VinScore:int = 50
 
 @onready var World:Node2D = $World
 @onready var UserInterface:Control = $InterfaceLayer/UserInterfase
@@ -9,15 +8,11 @@ extends Node
 
 var CurrentScore:int = 0: set = SetScore
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	UserInterface.Init(World.GetPlayer())
 	World.GameObjectDestroed.connect(func(Score):CurrentScore+=Score)
 	World.PlayerDestroed.connect(PlayerLose)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	UserInterface.UpdateVinScore(CurrentScore, VinScore)
 
 func _on_ateroid_spawn_timer_timeout():
 	World.SpawnAsteroid()

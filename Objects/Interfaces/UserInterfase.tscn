@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d4mhe8clsfr08"]
 
-[ext_resource type="Script" path="res://Scripts/UserInterfaseLogic.gd" id="1_1h2w6"]
+[ext_resource type="Script" path="res://Scripts/Interface/UserInterfaseLogic.gd" id="1_1h2w6"]
 
 [node name="UserInterfase" type="Control"]
 layout_mode = 3

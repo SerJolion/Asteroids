@@ -4,12 +4,6 @@ extends Node2D
 @export var Damage:float = 5.0
 @export var LifeTime:float = 10.0
 
-func _ready():
-	pass
-
-func _process(delta):
-	pass
-
 func _physics_process(delta):
 	var Velocity = transform.x.normalized() * Speed * delta
 	translate(Velocity)
