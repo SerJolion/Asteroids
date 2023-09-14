@@ -36,7 +36,7 @@ func AddParticlesObject(Count:int, OneShot:bool, LifeTime:float, Explosion:bool 
 	Particles.lifetime = LifeTime
 	if OneShot:
 		Particles.one_shot = OneShot
-		get_tree().create_timer(LifeTime+0.5).timeout.connect(Particles.queue_free)
+		get_tree().create_timer(LifeTime+0.5).timeout.connect(Particles.call_deferred.bind('queue_free'))
 	if Explosion:
 		Particles.explosiveness = 1
 	Particles.process_material = ParticleMaterial

@@ -8,6 +8,8 @@ signal EnergyChanged(NewValue, MaxValue)
 @onready var Particles:GPUParticles2D = $Particles
 @onready var BulletPostition:Node2D = $BulletPosition
 @onready var InvincibleTimer:Timer = $InvincibleTimer
+@onready var DisplayWidth:int =  ProjectSettings.get_setting("display/window/size/viewport_width")
+@onready var DisplayHeight:int = ProjectSettings.get_setting("display/window/size/viewport_height")
 
 @export_category('Movement')
 @export var Speed:float = 150.0
@@ -23,6 +25,7 @@ var Health:float = 1 : set = SetHealth
 var Energy:float = 1 : set = SetEnergy
 
 var Invincible:bool = false
+
 
 func _ready():
 	Health = MaxHealth
@@ -43,6 +46,16 @@ func _physics_process(delta):
 		apply_central_force(-transform.x.normalized() * vel * Speed)
 	else:
 		Particles.emitting = false
+	
+	if position.x > DisplayWidth:
+		position = Vector2(0,position.y)
+	if position.x < 0:
+		position = Vector2(DisplayWidth,position.y)
+	if position.y > DisplayHeight:
+		position = Vector2(position.x, 0)
+	if position.y < 0:
+		position = Vector2(position.x, DisplayHeight)
+	
 	Energy = clamp(Energy+EnergyRestoreSpeed, 0, MaxEnergy)
 
 func AddDamage(DamageValue:float)->void:
