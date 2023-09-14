@@ -49,7 +49,7 @@ text = "Состояние"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BarsContainer"]
+[node name="VinScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/BarsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1

@@ -2,6 +2,7 @@ extends Control
 
 @onready var HealthBar:ProgressBar = $MarginContainer/VBoxContainer/BarsContainer/HealthContainer/HealthBar
 @onready var EnergyBar:ProgressBar = $MarginContainer/VBoxContainer/BarsContainer/VBoxContainer/EnergyBar
+@onready var VinScoreLabel:Label = $MarginContainer/VBoxContainer/BarsContainer/VinScoreLabel
 
 var Player:RigidBody2D = null
 
@@ -23,3 +24,6 @@ func UpdateHealthBar(value:float, MaxValue:float)->void:
 
 func UpdateEnergyBar(value:float, MaxValue:float)->void:
 	EnergyBar.value = (value * 100)/MaxValue
+
+func UpdateVinScore(CurrentScore:int, ScoreForVin:int)->void:
+	VinScoreLabel.text = '{0} / {1}'.format([CurrentScore, ScoreForVin])

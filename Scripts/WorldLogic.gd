@@ -1,5 +1,7 @@
 extends Node2D
 
+signal GameObjectDestroed(Score:int)
+
 @onready var PlayerScene:PackedScene = load("res://Objects/player.tscn")
 @onready var AsteroidSCene:PackedScene = load("res://Objects/AsteroidLarge.tscn")
 
@@ -46,3 +48,6 @@ func Add2DObject(Obj:Node2D, Position:Vector2 = Vector2.ZERO)->void:
 	add_child(Obj)
 	Obj.translate(Position)
 	print('Объект {0} добавлен в мир'.format([Obj.name]))
+
+func ObjectDestroed(Score:int):
+	GameObjectDestroed.emit(Score)

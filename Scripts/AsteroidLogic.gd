@@ -25,6 +25,9 @@ func _physics_process(delta):
 	#apply_central_force(Direction.normalized()*Speed*delta)
 	#apply_torque(RotationSpeed*delta)
 
+func _exit_tree():
+	get_parent().ObjectDestroed(10)
+
 func AddDamage(DamageValue:float)->void:
 	SetHealth(Health-DamageValue)
 
