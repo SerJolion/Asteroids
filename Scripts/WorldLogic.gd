@@ -1,6 +1,7 @@
 extends Node2D
 
 signal GameObjectDestroed(Score:int)
+signal PlayerDestroed
 
 @onready var PlayerScene:PackedScene = load("res://Objects/player.tscn")
 @onready var AsteroidSCene:PackedScene = load("res://Objects/AsteroidLarge.tscn")
@@ -20,6 +21,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
 
 func GetPlayer()->RigidBody2D:
 	return Player

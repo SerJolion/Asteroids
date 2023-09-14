@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/WorldLogic.gd" id="1_iph1a"]
 [ext_resource type="Script" path="res://Scripts/GameLogic.gd" id="1_j73ng"]
 [ext_resource type="PackedScene" uid="uid://dl81odprhwp4t" path="res://Objects/AsteroidLarge.tscn" id="2_nbj44"]
-[ext_resource type="PackedScene" uid="uid://d4mhe8clsfr08" path="res://Objects/UserInterfase.tscn" id="4_qcs80"]
+[ext_resource type="PackedScene" uid="uid://d4mhe8clsfr08" path="res://Objects/Interfaces/UserInterfase.tscn" id="4_qcs80"]
 
 [sub_resource type="Curve2D" id="Curve2D_n0bfm"]
 _data = {
@@ -12,13 +12,16 @@ _data = {
 point_count = 5
 
 [node name="Root" type="Node"]
+process_mode = 3
 script = ExtResource("1_j73ng")
 
 [node name="AteroidSpawnTimer" type="Timer" parent="."]
+process_mode = 1
 wait_time = 5.0
 autostart = true
 
 [node name="World" type="Node2D" parent="."]
+process_mode = 1
 script = ExtResource("1_iph1a")
 
 [node name="PlayerStartPosition" type="Marker2D" parent="World"]
@@ -41,6 +44,7 @@ position = Vector2(566, 175)
 position = Vector2(831, 422)
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
+process_mode = 3
 
 [node name="UserInterfase" parent="InterfaceLayer" instance=ExtResource("4_qcs80")]
 

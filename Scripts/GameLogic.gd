@@ -1,6 +1,6 @@
 extends Node
 
-@export var VinScore:int = 100
+@export var VinScore:int = 20
 
 
 @onready var World:Node2D = $World
@@ -13,6 +13,7 @@ var CurrentScore:int = 0: set = SetScore
 func _ready():
 	UserInterface.Init(World.GetPlayer())
 	World.GameObjectDestroed.connect(func(Score):CurrentScore+=Score)
+	World.PlayerDestroed.connect(PlayerLose)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -28,5 +29,13 @@ func SetScore(value:int)->void:
 	if CurrentScore == VinScore:
 		PlayerVin()
 
+func Pause(value:bool)->void:
+	get_tree().paused = value
+
 func PlayerVin():
-	pass
+	UserInterface.ShowEndGamePanel('Вы победили', Color.DARK_GREEN)
+	Pause(true)
+
+func PlayerLose():
+	UserInterface.ShowEndGamePanel('Вы проиграли', Color.DARK_RED)
+	Pause(true)

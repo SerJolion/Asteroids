@@ -31,6 +31,9 @@ func _ready():
 	Health = MaxHealth
 	Energy = MaxEnergy
 
+func _exit_tree():
+	get_parent().PlayerDestroed.emit()
+
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		Shoot()
