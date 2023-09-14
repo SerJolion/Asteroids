@@ -7,7 +7,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_n0bfm"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -85, -108, 0, 0, 0, 0, 1261, -128, 0, 0, 0, 0, 1316, 701, 0, 0, 0, 0, -146, 713, 0, 0, 0, 0, -85, -108)
+"points": PackedVector2Array(0, 0, 0, 0, 1316, -128, 0, 0, 0, 0, 1316, 701, 0, 0, 0, 0, -146, 713, 0, 0, 0, 0, -150, -127, 0, 0, 0, 0, 1316, -128)
 }
 point_count = 5
 
@@ -28,8 +28,8 @@ position = Vector2(589, 322)
 curve = SubResource("Curve2D_n0bfm")
 
 [node name="AsteroidSpawPoint" type="PathFollow2D" parent="World/AsteroidSpawnPath"]
-position = Vector2(-85, -108)
-rotation = -0.0148577
+position = Vector2(1316, -128)
+rotation = 1.5708
 
 [node name="AsteroidLarge" parent="World" instance=ExtResource("2_nbj44")]
 position = Vector2(191, 176)

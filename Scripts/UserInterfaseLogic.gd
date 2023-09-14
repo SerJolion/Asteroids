@@ -1,7 +1,7 @@
 extends Control
 
-@onready var HealthBar:ProgressBar = $VBoxContainer/BarsContainer/HealthBar
-@onready var EnergyBar:ProgressBar = $VBoxContainer/BarsContainer/EnergyBar
+@onready var HealthBar:ProgressBar = $MarginContainer/VBoxContainer/BarsContainer/HealthContainer/HealthBar
+@onready var EnergyBar:ProgressBar = $MarginContainer/VBoxContainer/BarsContainer/VBoxContainer/EnergyBar
 
 var Player:RigidBody2D = null
 
