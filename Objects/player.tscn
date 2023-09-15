@@ -15,6 +15,7 @@ gravity_scale = 0.0
 script = ExtResource("1_kt0p5")
 Speed = 200.0
 RotationSpeed = 200.0
+FireDamage = 100.0
 
 [node name="Visual" type="Polygon2D" parent="."]
 polygon = PackedVector2Array(10, 0, -6, -8, -6, 8)

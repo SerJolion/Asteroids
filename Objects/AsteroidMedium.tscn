@@ -19,3 +19,5 @@ width = 5.0
 [node name="Visual" type="CollisionPolygon2D" parent="."]
 position = Vector2(-9, 10)
 polygon = PackedVector2Array(-22, -13, 4, -31, 25, -25, 38, 1, 15, 16, -2, -1)
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]

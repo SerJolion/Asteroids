@@ -17,6 +17,7 @@ signal EnergyChanged(NewValue, MaxValue)
 @export var Speed:float = 150.0
 @export var RotationSpeed:float = 150.0
 @export_category('Gameplay')
+@export var FireDamage:float = 10
 @export var MaxHealth:float = 100.0
 @export var MaxEnergy:float = 100.0
 @export var ContactDamage:float = 50.0
@@ -84,6 +85,7 @@ func Shoot():
 		Energy -= ShootEnergyCost
 		var Bullet:Node2D = BulletScene.instantiate()
 		get_parent().add_child(Bullet)
+		Bullet.Damage = FireDamage
 		Bullet.translate(BulletPostition.global_position)
 		Bullet.rotation = rotation
 		AudioPlayer.stream = PewSound
