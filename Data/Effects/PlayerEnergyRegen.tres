@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnergyRegenEffect" load_steps=2 format=3 uid="uid://cjelh3n25idoi"]
+
+[ext_resource type="Script" path="res://Scripts/Effects/EnergyRegenEffect.gd" id="1_lih1c"]
+
+[resource]
+script = ExtResource("1_lih1c")
+RegenValue = 0.5
+Id = "player_effect_regen"
+DisplayName = "Реген энергии"
+Description = " Реген энергии для игрока"
+PathToIcon = ""
+LifeTime = 0.0
+Type = 1

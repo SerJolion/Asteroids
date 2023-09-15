@@ -159,12 +159,12 @@ SpawnPositionOffset = 75
 SpawnObjectsCount = 3
 SpawnObjectScenePath = "res://Objects/AsteroidMedium.tscn"
 
-[node name="Colider" type="Line2D" parent="."]
+[node name="Visual" type="Line2D" parent="."]
 position = Vector2(-24, 19)
 points = PackedVector2Array(-38, -35, 26, -80, 82, -28, 70, 28, 13, 40, -34, 22, -37, -37)
 width = 5.0
 
-[node name="Visual" type="CollisionPolygon2D" parent="."]
+[node name="Colider" type="CollisionPolygon2D" parent="."]
 position = Vector2(-24, 19)
 polygon = PackedVector2Array(-39, -37, 26, -83, 85, -29, 72, 30, 14, 43, -36, 25)
 

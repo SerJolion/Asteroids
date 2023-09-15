@@ -26,12 +26,14 @@ signal EnergyChanged(NewValue, MaxValue)
 
 var Health:float = 1 : set = SetHealth
 var Energy:float = 1 : set = SetEnergy
+var Effects:Dictionary = {}
 
 var Invincible:bool = false
 
 func _ready():
 	Health = MaxHealth
 	Energy = MaxEnergy
+	AddEffect(load("res://Data/Effects/PlayerEnergyRegen.tres"))
 
 func _exit_tree():
 	get_parent().PlayerDestroed.emit()
@@ -61,7 +63,30 @@ func _physics_process(delta):
 	if position.y < 0:
 		position = Vector2(position.x, DisplayHeight)
 	
-	Energy = clamp(Energy+EnergyRestoreSpeed, 0, MaxEnergy)
+	#Energy = clamp(Energy+EnergyRestoreSpeed, 0, MaxEnergy)
+
+	for EffectId in Effects.keys():
+		var CurrentEffect:Effect = Effects[EffectId]
+		CurrentEffect.Process(self,get_parent())
+		match CurrentEffect.Type:
+			0:
+				RemoveEffect(EffectId)
+			1:
+				pass
+			2:
+				CurrentEffect.LifeTime -= delta
+				if CurrentEffect.LifeTime <= 0:
+					RemoveEffect(EffectId)
+
+func AddEffect(_Effect:Effect):
+	if not _Effect.Id in Effects.keys():
+		Effects[_Effect.Id] = _Effect
+		_Effect.Start(self,get_parent())
+
+func RemoveEffect(EffectId:String):
+	if EffectId in Effects.keys():
+		Effects[EffectId].End(self,get_parent())
+		Effects.erase(EffectId)
 
 func AddDamage(DamageValue:float)->void:
 	if !Invincible:

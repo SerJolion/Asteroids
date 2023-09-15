@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HealthRegenEffect" load_steps=2 format=3 uid="uid://drpcciyrlvu46"]
+
+[ext_resource type="Script" path="res://Scripts/Effects/HealthRegenEffect.gd" id="1_hd08p"]
+
+[resource]
+script = ExtResource("1_hd08p")
+RegenValue = 0.0
+Id = "medkit_effect"
+DisplayName = "Востановление"
+Description = " Востановление корпуса корабля с помощью микроботов"
+PathToIcon = ""
+LifeTime = 10.0
+Type = 2

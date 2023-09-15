@@ -60,6 +60,7 @@ func Destroy():
 			var Position:Vector2 = position + Vector2(randi_range(-SpawnPositionOffset,SpawnPositionOffset), randi_range(-SpawnPositionOffset,SpawnPositionOffset))
 			NewSpawnObject.translate(Position) 
 	$Visual.hide()
+	$Colider.disabled = true
 	get_parent().AddParticlesObject(30, true, 1.5, true, DestroyParticlesMaterial, position)
 	get_parent().AddSoundObject('res://Sound/AsteroidDestroy.mp3', position)
 	get_parent().ObjectDestroed(10)

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://4jkqk88ima8o"]
+
+[ext_resource type="Script" path="res://Scripts/PowerupLogic.gd" id="1_7vnvw"]
+[ext_resource type="Texture2D" uid="uid://1okklb8cplbw" path="res://icon.svg" id="2_p6a7t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rf14o"]
+radius = 34.2345
+
+[node name="Powerup" type="Node2D"]
+script = ExtResource("1_7vnvw")
+
+[node name="ActivateZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivateZone"]
+shape = SubResource("CircleShape2D_rf14o")
+
+[node name="Visual" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_p6a7t")
