@@ -12,15 +12,20 @@ extends RigidBody2D
 @export_file('*.tscn') var SpawnObjectScenePath
 
 var Direction:Vector2
+var MaxXCoord:int
+var MaxYCoord
 
 func _ready():
 	rotation = randf_range(0,360)
 	Direction = Vector2(1,0).rotated(randf()*2.0*PI)
 	constant_torque = RotationSpeed
 	constant_force = Direction * Speed
+	MaxXCoord = get_parent().MaxXCoord
+	MaxYCoord = get_parent().MaxYCoord
 
-func _exit_tree():
-	get_parent().ObjectDestroed(10)
+func _physics_process(delta):
+	if position.x > MaxXCoord + 200 or position.x < -200 or position.y > MaxYCoord+200 or position.y < -200:
+		queue_free()
 
 func AddDamage(DamageValue:float)->void:
 	SetHealth(Health-DamageValue)
@@ -42,4 +47,5 @@ func Destroy():
 			var Position:Vector2 = position + Vector2(randi_range(-SpawnPositionOffset,SpawnPositionOffset), randi_range(-SpawnPositionOffset,SpawnPositionOffset))
 			NewSpawnObject.translate(Position)
 	get_parent().AddParticlesObject(30, true, 0.5, true, DestroyParticlesMaterial, position)
+	get_parent().ObjectDestroed(10)
 	call_deferred('queue_free')

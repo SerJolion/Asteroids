@@ -18,7 +18,6 @@ script = ExtResource("1_j73ng")
 
 [node name="AteroidSpawnTimer" type="Timer" parent="."]
 process_mode = 1
-wait_time = 5.0
 autostart = true
 
 [node name="World" type="Node2D" parent="."]
@@ -26,7 +25,7 @@ process_mode = 1
 script = ExtResource("1_iph1a")
 
 [node name="PlayerStartPosition" type="Marker2D" parent="World"]
-position = Vector2(589, 322)
+position = Vector2(567, 355)
 
 [node name="AsteroidSpawnPath" type="Path2D" parent="World"]
 curve = SubResource("Curve2D_n0bfm")
@@ -43,6 +42,10 @@ position = Vector2(566, 175)
 
 [node name="AsteroidLarge3" parent="World" instance=ExtResource("2_nbj44")]
 position = Vector2(831, 422)
+
+[node name="RayCast2D" type="RayCast2D" parent="World"]
+position = Vector2(-93, -78)
+target_position = Vector2(0, 100)
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 process_mode = 3

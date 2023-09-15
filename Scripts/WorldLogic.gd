@@ -10,13 +10,15 @@ signal PlayerDestroed
 @onready var PlayerStartPosition:Marker2D = $PlayerStartPosition
 @onready var AsteroidSpawnPoint:PathFollow2D = $AsteroidSpawnPath/AsteroidSpawPoint
 
+@onready var MaxXCoord:int =  ProjectSettings.get_setting("display/window/size/viewport_width")
+@onready var MaxYCoord:int  = ProjectSettings.get_setting("display/window/size/viewport_height")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Player = PlayerScene.instantiate()
 	add_child(Player)
 	Player.translate(PlayerStartPosition.position)
 	AddParticlesObject(10,true, false, 1,load("res://Materials/Particles/ShipFire.material"), Vector2(500,500))
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -31,7 +33,20 @@ func SpawnAsteroid()->void:
 	AsteroidSpawnPoint.progress_ratio = randf()
 	add_child(NewAsteroid)
 	NewAsteroid.translate(AsteroidSpawnPoint.position)
-	NewAsteroid.SetDirection((Player.position-AsteroidSpawnPoint.position).normalized())
+	var Direction:Vector2 = Vector2.ZERO
+	if AsteroidSpawnPoint.position.x > MaxXCoord:
+		Direction.x = -1
+		Direction.y = randi_range(0,MaxYCoord)
+	if AsteroidSpawnPoint.position.x <= 0:
+		Direction.x = 1
+		Direction.y = randi_range(0,MaxYCoord)
+	if AsteroidSpawnPoint.position.y > MaxYCoord:
+		Direction.x = randi_range(0,MaxXCoord)
+		Direction.y = -1
+	if AsteroidSpawnPoint.position.y <= 0:
+		Direction.x = randi_range(0,MaxXCoord)
+		Direction.y = 1
+	NewAsteroid.SetDirection(Direction.normalized())
 	
 
 func AddParticlesObject(Count:int, OneShot:bool, LifeTime:float, Explosion:bool ,ParticleMaterial:ParticleProcessMaterial, Position:Vector2)->void:
