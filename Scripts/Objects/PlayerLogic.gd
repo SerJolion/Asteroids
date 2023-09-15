@@ -31,7 +31,8 @@ var Effects:Dictionary = {}
 var Invincible:bool = false
 
 func _ready():
-	Health = MaxHealth
+	#Health = MaxHealth
+	Health = 1.0
 	Energy = MaxEnergy
 	AddEffect(load("res://Data/Effects/PlayerEnergyRegen.tres"))
 

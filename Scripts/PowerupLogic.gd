@@ -1,13 +1,17 @@
 extends Node2D
 
 @export_file('*.png') var PathToVisualSprite:String
-@export_file('*.res') var PathToCurrentEffect:String
+@export_file('*.tres') var PathToCurrentEffect:String
 
-# Called when the node enters the scene tree for the first time.
+var CurrentEffect:Effect
+
 func _ready():
-	pass # Replace with function body.
+	CurrentEffect = load(PathToCurrentEffect)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func _on_pickup_area_body_entered(body):
+	if body.has_method('AddEffect'):
+		body.AddEffect(CurrentEffect)
+		queue_free()

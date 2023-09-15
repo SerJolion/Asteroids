@@ -4,10 +4,10 @@
 
 [resource]
 script = ExtResource("1_hd08p")
-RegenValue = 0.0
+RegenValue = 60.0
 Id = "medkit_effect"
 DisplayName = "Востановление"
 Description = " Востановление корпуса корабля с помощью микроботов"
 PathToIcon = ""
-LifeTime = 10.0
-Type = 2
+LifeTime = 0.0
+Type = 0

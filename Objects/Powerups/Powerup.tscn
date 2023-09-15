@@ -9,11 +9,13 @@ radius = 34.2345
 [node name="Powerup" type="Node2D"]
 script = ExtResource("1_7vnvw")
 
-[node name="ActivateZone" type="Area2D" parent="."]
+[node name="PickupArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivateZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 shape = SubResource("CircleShape2D_rf14o")
 
 [node name="Visual" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_p6a7t")
+
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
