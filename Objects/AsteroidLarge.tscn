@@ -152,6 +152,8 @@ animations = [{
 mass = 10.0
 inertia = 10.0
 gravity_scale = 0.0
+max_contacts_reported = 3
+contact_monitor = true
 script = ExtResource("1_qljo3")
 Speed = 50.0
 RotationSpeed = 2.0
@@ -176,3 +178,5 @@ position = Vector2(-1, 5)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_86h8q")
 animation = &"DestroyBig"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

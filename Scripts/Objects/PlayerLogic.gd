@@ -92,6 +92,8 @@ func RemoveEffect(EffectId:String):
 func AddDamage(DamageValue:float)->void:
 	if !Invincible:
 		SetHealth(Health - DamageValue)
+		Invincible = true
+		InvincibleTimer.start()
 
 func SetHealth(value:float)->void:
 	HealthChanged.emit(value, MaxHealth)
@@ -117,12 +119,9 @@ func Shoot():
 		AudioPlayer.stream = PewSound
 		AudioPlayer.play()
 
-func _on_hurt_box_body_entered(body):
-	if body != self:
-		if linear_velocity.length() > 50:
-			AddDamage(ContactDamage)
-			Invincible = true
-			InvincibleTimer.start()
-
 func _on_invincible_timer_timeout():
 	Invincible = false
+
+func _on_body_entered(body):
+	if body.has_method('AddDamage'):
+		body.AddDamage(ContactDamage)

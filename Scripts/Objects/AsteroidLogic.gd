@@ -8,6 +8,7 @@ extends RigidBody2D
 @onready var AudioPlayer:AudioStreamPlayer2D = $AudioPlayer
 @onready var AnimationSprite:AnimatedSprite2D = $AnimationSprite
 
+@export var ContactDamage:float = 50.0
 @export var Speed:float = 200.0
 @export var RotationSpeed:float = 150.0
 @export var Health:float = 100.0: set=SetHealth
@@ -65,3 +66,7 @@ func Destroy():
 	get_parent().AddSoundObject('res://Sound/AsteroidDestroy.mp3', position)
 	get_parent().ObjectDestroed(10)
 	AnimationSprite.play("DestroyBig")
+
+func _on_body_entered(body):
+	if body.has_method('AddDamage'):
+		body.AddDamage(ContactDamage)

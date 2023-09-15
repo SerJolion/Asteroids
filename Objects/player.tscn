@@ -12,6 +12,8 @@ bounce = 0.1
 inertia = 1.0
 physics_material_override = SubResource("PhysicsMaterial_un3k1")
 gravity_scale = 0.0
+max_contacts_reported = 3
+contact_monitor = true
 script = ExtResource("1_kt0p5")
 Speed = 200.0
 RotationSpeed = 200.0
@@ -23,12 +25,6 @@ polygon = PackedVector2Array(10, 0, -6, -8, -6, 8)
 [node name="Colider" type="CollisionPolygon2D" parent="."]
 self_modulate = Color(0, 1, 0, 1)
 polygon = PackedVector2Array(9, 0, -5, -7, -5, 7)
-
-[node name="HurtBox" type="Area2D" parent="."]
-self_modulate = Color(0.266667, 0.505882, 0.376471, 1)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="HurtBox"]
-polygon = PackedVector2Array(10, 0, -6, -8, -6, 8)
 
 [node name="Particles" type="GPUParticles2D" parent="."]
 position = Vector2(-7, 0)
@@ -43,5 +39,5 @@ position = Vector2(19, 0)
 
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
 
-[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="InvincibleTimer" to="." method="_on_invincible_timer_timeout"]
