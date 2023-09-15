@@ -8,6 +8,7 @@ RegenValue = 0.5
 Id = "player_effect_regen"
 DisplayName = "Реген энергии"
 Description = " Реген энергии для игрока"
+VisibleIcon = true
 PathToIcon = "res://Sprites/EnergyRegenEffectIcon.png"
 LifeTime = 0.0
 Type = 1

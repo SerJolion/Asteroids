@@ -61,6 +61,7 @@ func Destroy():
 			NewSpawnObject.translate(Position) 
 	$Visual.hide()
 	$Colider.disabled = true
+	sleeping = true
 	get_parent().AddParticlesObject(30, true, 1.5, true, DestroyParticlesMaterial, position)
 	get_parent().AddSoundObject('res://Sound/AsteroidDestroy.mp3', position)
 	get_parent().ObjectDestroed(10)

@@ -7,23 +7,14 @@ extends Node
 @onready var AsteroidSpawnTimer:Timer = $AteroidSpawnTimer
 @onready var AmbientSoundPlayer:AudioStreamPlayer = $AmbientSoundPlayer
 
-var CurrentScore:int = 0: set = SetScore
-
 func _ready():
+	World.GetPlayer().FuelIsFull.connect(PlayerVin)
 	UserInterface.Init(World.GetPlayer())
-	World.GameObjectDestroed.connect(func(Score):CurrentScore+=Score)
 	World.PlayerDestroed.connect(PlayerLose)
-	UserInterface.UpdateVinScore(CurrentScore, VinScore)
 
 func _on_ateroid_spawn_timer_timeout():
 	World.SpawnAsteroid()
 	AsteroidSpawnTimer.start()
-
-func SetScore(value:int)->void:
-	CurrentScore = clamp(value, 0, VinScore)
-	UserInterface.UpdateVinScore(CurrentScore, VinScore)
-	if CurrentScore == VinScore:
-		PlayerVin()
 
 func Pause(value:bool)->void:
 	get_tree().paused = value

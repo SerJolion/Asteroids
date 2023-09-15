@@ -8,6 +8,7 @@ RegenValue = 0.1
 Id = "medkit_effect"
 DisplayName = "Востановление"
 Description = " Востановление корпуса корабля с помощью микроботов"
+VisibleIcon = true
 PathToIcon = "res://Sprites/HealEffectIcon.png"
 LifeTime = 10.0
 Type = 2

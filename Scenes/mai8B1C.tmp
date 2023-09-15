@@ -16,6 +16,7 @@ point_count = 5
 [node name="Root" type="Node"]
 process_mode = 3
 script = ExtResource("1_j73ng")
+VinScore = null
 
 [node name="AteroidSpawnTimer" type="Timer" parent="."]
 process_mode = 1
@@ -38,7 +39,7 @@ rotation = 3.13428
 
 [node name="Powerup" parent="World" instance=ExtResource("3_8rvpa")]
 position = Vector2(334, 504)
-PathToCurrentEffect = "res://Data/Effects/AddSmallFuel.tres"
+PathToCurrentEffect = "res://Data/Effects/MedkitEffect.tres"
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 process_mode = 3

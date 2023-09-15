@@ -10,6 +10,7 @@ const TEMPORARY_TYPE = 2
 @export var Id:String = 'empty_effect'
 @export var DisplayName:String
 @export_multiline var Description:String = ' '
+@export var VisibleIcon:bool = false
 @export_file('*') var PathToIcon:String
 @export var LifeTime:float
 @export_enum('Instant','Constant','Temporary') var Type:int

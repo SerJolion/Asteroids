@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AddFuelEffect" load_steps=2 format=3 uid="uid://bkv8ln7kct05h"]
+
+[ext_resource type="Script" path="res://Scripts/Effects/AddFuelEffect.gd" id="1_fheg4"]
+
+[resource]
+script = ExtResource("1_fheg4")
+FuelValue = 10.0
+Id = "add_smal_fuel"
+DisplayName = "Добавить топливо"
+Description = " Добавляет немного топлива"
+PathToIcon = ""
+LifeTime = 0.0
+Type = 0

@@ -2,6 +2,8 @@ extends RigidBody2D
 
 signal HealthChanged(NewValue, MaxValue)
 signal EnergyChanged(NewValue, MaxValue)
+signal FuelChanget(NewValue, MaxValue)
+signal FuelIsFull
 signal EffectAdded(effect:Effect)
 signal EffectRemoved(EffectId)
 
@@ -22,12 +24,14 @@ signal EffectRemoved(EffectId)
 @export var FireDamage:float = 10
 @export var MaxHealth:float = 100.0
 @export var MaxEnergy:float = 100.0
+@export var MaxFuel:float = 10.0
 @export var ContactDamage:float = 50.0
 @export var EnergyRestoreSpeed:float = 0.5
 @export var ShootEnergyCost: float = 10.0
 
 var Health:float = 1 : set = SetHealth
 var Energy:float = 1 : set = SetEnergy
+var Fuel:float = 1 : set = SetFuel
 var Effects:Dictionary = {}
 
 var Invincible:bool = false
@@ -106,6 +110,12 @@ func SetHealth(value:float)->void:
 func SetEnergy(value:float)->void:
 	EnergyChanged.emit(value, MaxEnergy)
 	Energy = value
+
+func SetFuel(value:float)->void:
+	FuelChanget.emit(value, MaxFuel)
+	Fuel = value
+	if Fuel >= MaxFuel:
+		FuelIsFull.emit()
 
 func Destroy():
 	queue_free()

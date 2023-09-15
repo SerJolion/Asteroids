@@ -38,7 +38,7 @@ rotation = 3.13428
 
 [node name="Powerup" parent="World" instance=ExtResource("3_8rvpa")]
 position = Vector2(334, 504)
-PathToCurrentEffect = "res://Data/Effects/AddSmallFuel.tres"
+PathToCurrentEffect = "res://Data/Effects/MedkitEffect.tres"
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 process_mode = 3
