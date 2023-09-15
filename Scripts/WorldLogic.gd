@@ -61,6 +61,13 @@ func AddParticlesObject(Count:int, OneShot:bool, LifeTime:float, Explosion:bool 
 	Particles.process_material = ParticleMaterial
 	Add2DObject(Particles, Position)
 
+func AddSoundObject(SoundPath:String, Position:Vector2):
+	var SoundObject:AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+	SoundObject.finished.connect(SoundObject.queue_free)
+	SoundObject.stream = load(SoundPath)
+	SoundObject.autoplay = true
+	Add2DObject(SoundObject, Position)
+
 func Add2DObject(Obj:Node2D, Position:Vector2 = Vector2.ZERO)->void:
 	add_child(Obj)
 	Obj.translate(Position)

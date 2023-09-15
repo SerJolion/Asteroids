@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/WorldLogic.gd" id="1_iph1a"]
 [ext_resource type="Script" path="res://Scripts/GameLogic.gd" id="1_j73ng"]
-[ext_resource type="PackedScene" uid="uid://dl81odprhwp4t" path="res://Objects/AsteroidLarge.tscn" id="2_nbj44"]
+[ext_resource type="AudioStream" uid="uid://cwwa5pph84742" path="res://Sound/TestAmbient.mp3" id="4_lo31j"]
 [ext_resource type="PackedScene" uid="uid://d4mhe8clsfr08" path="res://Objects/Interfaces/UserInterfase.tscn" id="4_qcs80"]
 
 [sub_resource type="Curve2D" id="Curve2D_n0bfm"]
@@ -18,6 +18,7 @@ script = ExtResource("1_j73ng")
 
 [node name="AteroidSpawnTimer" type="Timer" parent="."]
 process_mode = 1
+wait_time = 3.0
 autostart = true
 
 [node name="World" type="Node2D" parent="."]
@@ -34,22 +35,14 @@ curve = SubResource("Curve2D_n0bfm")
 position = Vector2(1136, 848)
 rotation = 3.13428
 
-[node name="AsteroidLarge" parent="World" instance=ExtResource("2_nbj44")]
-position = Vector2(191, 176)
-
-[node name="AsteroidLarge2" parent="World" instance=ExtResource("2_nbj44")]
-position = Vector2(566, 175)
-
-[node name="AsteroidLarge3" parent="World" instance=ExtResource("2_nbj44")]
-position = Vector2(831, 422)
-
-[node name="RayCast2D" type="RayCast2D" parent="World"]
-position = Vector2(-93, -78)
-target_position = Vector2(0, 100)
-
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 process_mode = 3
 
 [node name="UserInterfase" parent="InterfaceLayer" instance=ExtResource("4_qcs80")]
+
+[node name="AmbientSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lo31j")
+autoplay = true
+bus = &"Music"
 
 [connection signal="timeout" from="AteroidSpawnTimer" to="." method="_on_ateroid_spawn_timer_timeout"]

@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 @onready var AsteroidMediumScene:PackedScene = load("res://Objects/AsteroidMedium.tscn")
+@onready var DestroySound:AudioStreamMP3 = load("res://Sound/AsteroidDestroy.mp3")
 @onready var DestroyParticlesMaterial:ParticleProcessMaterial = load('res://Materials/Particles/AsteroidDestroy.material')
 
 @export var Speed:float = 200.0
@@ -45,7 +46,8 @@ func Destroy():
 			var NewSpawnObject:Node2D = SpawObjectScene.instantiate()
 			get_parent().add_child(NewSpawnObject)
 			var Position:Vector2 = position + Vector2(randi_range(-SpawnPositionOffset,SpawnPositionOffset), randi_range(-SpawnPositionOffset,SpawnPositionOffset))
-			NewSpawnObject.translate(Position)
+			NewSpawnObject.translate(Position) 
 	get_parent().AddParticlesObject(30, true, 0.5, true, DestroyParticlesMaterial, position)
+	get_parent().AddSoundObject('res://Sound/AsteroidDestroy.mp3', position)
 	get_parent().ObjectDestroed(10)
-	call_deferred('queue_free')
+	queue_free()

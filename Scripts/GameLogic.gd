@@ -5,6 +5,7 @@ extends Node
 @onready var World:Node2D = $World
 @onready var UserInterface:Control = $InterfaceLayer/UserInterfase
 @onready var AsteroidSpawnTimer:Timer = $AteroidSpawnTimer
+@onready var AmbientSoundPlayer:AudioStreamPlayer = $AmbientSoundPlayer
 
 var CurrentScore:int = 0: set = SetScore
 
