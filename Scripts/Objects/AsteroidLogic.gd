@@ -42,7 +42,6 @@ func AddDamage(DamageValue:float)->void:
 	if AudioPlayer != null:
 		AudioPlayer.stream = HitSound
 		AudioPlayer.play()
-	
 
 func SetDirection(value:Vector2)->void:
 	Direction = value

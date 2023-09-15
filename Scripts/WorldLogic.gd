@@ -18,12 +18,10 @@ func _ready():
 	Player = PlayerScene.instantiate()
 	add_child(Player)
 	Player.translate(PlayerStartPosition.position)
-	AddParticlesObject(10,true, false, 1,load("res://Materials/Particles/ShipFire.material"), Vector2(500,500))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
 
 func GetPlayer()->RigidBody2D:
 	return Player

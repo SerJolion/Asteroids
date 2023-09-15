@@ -75,6 +75,10 @@ text = "Энергия"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="EffectsIconContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
 [node name="Main" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3

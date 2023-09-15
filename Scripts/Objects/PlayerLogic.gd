@@ -2,6 +2,8 @@ extends RigidBody2D
 
 signal HealthChanged(NewValue, MaxValue)
 signal EnergyChanged(NewValue, MaxValue)
+signal EffectAdded(effect:Effect)
+signal EffectRemoved(EffectId)
 
 @onready var BulletScene:PackedScene = load("res://Objects/Bullet.tscn")
 @onready var PewSound:AudioStreamMP3 = load("res://Sound/pew.mp3")
@@ -63,8 +65,6 @@ func _physics_process(delta):
 		position = Vector2(position.x, 0)
 	if position.y < 0:
 		position = Vector2(position.x, DisplayHeight)
-	
-	#Energy = clamp(Energy+EnergyRestoreSpeed, 0, MaxEnergy)
 
 	for EffectId in Effects.keys():
 		var CurrentEffect:Effect = Effects[EffectId]
@@ -83,11 +83,13 @@ func AddEffect(_Effect:Effect):
 	if not _Effect.Id in Effects.keys():
 		Effects[_Effect.Id] = _Effect
 		_Effect.Start(self,get_parent())
+		EffectAdded.emit(_Effect)
 
 func RemoveEffect(EffectId:String):
 	if EffectId in Effects.keys():
 		Effects[EffectId].End(self,get_parent())
 		Effects.erase(EffectId)
+		EffectRemoved.emit(EffectId)
 
 func AddDamage(DamageValue:float)->void:
 	if !Invincible:
