@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnbqpn7sbdx8q"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/EnemyShipLogic.gd" id="1_lncbu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_23jax"]
+radius = 380.001
+
+[node name="EnemyShip" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_lncbu")
+
+[node name="Colider" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-12, -16, -12, 16, 18, 0)
+
+[node name="Visual" type="Polygon2D" parent="."]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(13, 0, -9, -12, -21, -11, -10, -5, -10, 4, -21, 7, -10, 13)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_23jax")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(380, 0)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(31, 0)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
