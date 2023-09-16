@@ -9,11 +9,13 @@ rough = true
 bounce = 0.1
 
 [node name="Player" type="RigidBody2D"]
-inertia = 1.0
+inertia = 0.5
 physics_material_override = SubResource("PhysicsMaterial_un3k1")
 gravity_scale = 0.0
 max_contacts_reported = 3
 contact_monitor = true
+linear_damp = 1.0
+angular_damp = 1.0
 script = ExtResource("1_kt0p5")
 Speed = 200.0
 RotationSpeed = 200.0

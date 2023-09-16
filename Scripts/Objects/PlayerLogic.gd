@@ -44,9 +44,9 @@ func _ready():
 func _exit_tree():
 	get_parent().PlayerDestroed.emit()
 
-func _integrate_forces(state):
-	if state.linear_velocity.length() > 100:
-		state.linear_velocity = state.linear_velocity.normalized() * 100
+#func _integrate_forces(state):
+#	if state.linear_velocity.length() > Speed:
+#		state.linear_velocity = state.linear_velocity.normalized() * Speed
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
@@ -75,22 +75,25 @@ func _physics_process(delta):
 
 	for EffectId in Effects.keys():
 		var CurrentEffect:Effect = Effects[EffectId]
-		CurrentEffect.Process(self,get_parent())
-		match CurrentEffect.Type:
-			0:
-				RemoveEffect(EffectId)
-			1:
-				pass
-			2:
-				CurrentEffect.LifeTime -= delta
-				if CurrentEffect.LifeTime <= 0:
-					RemoveEffect(EffectId)
+		ProcessEffect(CurrentEffect, get_parent(), delta)
 
 func AddEffect(_Effect:Effect):
 	if not _Effect.Id in Effects.keys():
 		Effects[_Effect.Id] = _Effect
 		_Effect.Start(self,get_parent())
 		EffectAdded.emit(_Effect)
+
+func ProcessEffect(_Effect:Effect, World:Node2D, delta:float):
+	_Effect.Process(self,get_parent())
+	match _Effect.Type:
+		0:
+			RemoveEffect(_Effect.Id)
+		1:
+			pass
+		2:
+			_Effect.LifeTime -= delta
+			if _Effect.LifeTime <= 0:
+				RemoveEffect(_Effect.Id)
 
 func RemoveEffect(EffectId:String):
 	if EffectId in Effects.keys():
