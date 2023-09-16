@@ -15,6 +15,6 @@ func _on_hit_box_body_entered(body):
 	Hit(body)
 
 func Hit(Target:Node2D):
-	if Target.has_method('AddDamage'):
-		Target.AddDamage(Damage)
+	if Target.has_method('Hurt'):
+		Target.Hurt(Damage)
 		queue_free()

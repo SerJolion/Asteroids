@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://df0pvqa8am0gy"]
+[gd_scene load_steps=7 format=3 uid="uid://df0pvqa8am0gy"]
 
 [ext_resource type="Script" path="res://Scripts/WorldLogic.gd" id="1_iph1a"]
 [ext_resource type="Script" path="res://Scripts/GameLogic.gd" id="1_j73ng"]
-[ext_resource type="PackedScene" uid="uid://4jkqk88ima8o" path="res://Objects/Powerups/Powerup.tscn" id="3_8rvpa"]
 [ext_resource type="AudioStream" uid="uid://cwwa5pph84742" path="res://Sound/TestAmbient.mp3" id="4_lo31j"]
 [ext_resource type="PackedScene" uid="uid://d4mhe8clsfr08" path="res://Objects/Interfaces/UserInterfase.tscn" id="4_qcs80"]
 [ext_resource type="PackedScene" uid="uid://cnbqpn7sbdx8q" path="res://Objects/EnemyShip.tscn" id="6_iqrp3"]
@@ -37,9 +36,9 @@ curve = SubResource("Curve2D_n0bfm")
 position = Vector2(1136, 848)
 rotation = 3.13428
 
-[node name="Powerup" parent="World" instance=ExtResource("3_8rvpa")]
-position = Vector2(334, 504)
-PathToCurrentEffect = "res://Data/Effects/AddSmallFuel.tres"
+[node name="EnemyShip" parent="World" instance=ExtResource("6_iqrp3")]
+position = Vector2(751, 262)
+Speed = 100.0
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -50,8 +49,5 @@ process_mode = 3
 stream = ExtResource("4_lo31j")
 autoplay = true
 bus = &"Music"
-
-[node name="EnemyShip" parent="." instance=ExtResource("6_iqrp3")]
-position = Vector2(558, 542)
 
 [connection signal="timeout" from="AteroidSpawnTimer" to="." method="_on_ateroid_spawn_timer_timeout"]

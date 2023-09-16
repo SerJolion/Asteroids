@@ -6,6 +6,7 @@ signal HealthChanged(NewValue, MaxValue)
 signal EnergyChanged(NewValue, MaxValue)
 signal EffectAdded(effect:Effect)
 signal EffectRemoved(EffectId)
+signal Destroed
 
 @export_category('Movement')
 @export var Speed:float = 150.0
@@ -17,6 +18,7 @@ signal EffectRemoved(EffectId)
 
 var Health:float = 1 : set = SetHealth
 var Energy:float = 1 : set = SetEnergy
+var Invincible:bool = false
 var Effects:Dictionary = {}
 
 func _process(delta):
@@ -28,17 +30,19 @@ func AddEffect(_Effect:Effect):
 		_Effect.Start(self,get_parent())
 		EffectAdded.emit(_Effect)
 
-func ProcessEffect(_Effect:Effect, World:Node2D, delta:float):
-	_Effect.Process(self,get_parent())
-	match _Effect.Type:
-		0:
-			RemoveEffect(_Effect.Id)
-		1:
-			pass
-		2:
-			_Effect.LifeTime -= delta
-			if _Effect.LifeTime <= 0:
+func ProcessEffects(delta:float):
+	for EffectId in Effects.keys():
+		var _Effect:Effect = Effects[EffectId]
+		_Effect.Process(self,get_parent())
+		match _Effect.Type:
+			0:
 				RemoveEffect(_Effect.Id)
+			1:
+				pass
+			2:
+				_Effect.LifeTime -= delta
+				if _Effect.LifeTime <= 0:
+					RemoveEffect(_Effect.Id)
 
 func RemoveEffect(EffectId:String):
 	if EffectId in Effects.keys():
@@ -47,14 +51,19 @@ func RemoveEffect(EffectId:String):
 		EffectRemoved.emit(EffectId)
 
 func SetHealth(value:float)->void:
-	HealthChanged.emit(value, MaxHealth)
-	Health = value
+	Health = clamp(value, 0, MaxHealth)
+	HealthChanged.emit(Health, MaxHealth)
 	if Health <= 0:
 		Destroy()
 
 func SetEnergy(value:float)->void:
+	Energy = clamp(value, 0, MaxEnergy)
 	EnergyChanged.emit(value, MaxEnergy)
-	Energy = value
+
+func Hurt(Damage:float):
+	if !Invincible:
+		Health -= Damage
 
 func Destroy():
+	Destroed.emit()
 	queue_free()

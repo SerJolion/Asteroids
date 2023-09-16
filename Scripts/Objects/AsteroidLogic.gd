@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends GameEntity
 
 @onready var AsteroidMediumScene:PackedScene = load("res://Objects/AsteroidMedium.tscn")
 @onready var DestroySound:AudioStreamMP3 = load("res://Sound/AsteroidDestroy.mp3")
@@ -8,10 +8,6 @@ extends RigidBody2D
 @onready var AudioPlayer:AudioStreamPlayer2D = $AudioPlayer
 @onready var AnimationSprite:AnimatedSprite2D = $AnimationSprite
 
-@export var ContactDamage:float = 50.0
-@export var Speed:float = 200.0
-@export var RotationSpeed:float = 150.0
-@export var Health:float = 100.0: set=SetHealth
 @export var SpawnObjects:bool = false
 @export var SpawnPositionOffset:int = 50
 @export var SpawnObjectsCount:int = 1

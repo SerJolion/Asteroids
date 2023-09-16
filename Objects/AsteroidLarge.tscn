@@ -155,11 +155,11 @@ gravity_scale = 0.0
 max_contacts_reported = 3
 contact_monitor = true
 script = ExtResource("1_qljo3")
-Speed = 50.0
-RotationSpeed = 2.0
 SpawnPositionOffset = 75
 SpawnObjectsCount = 3
 SpawnObjectScenePath = "res://Objects/AsteroidMedium.tscn"
+Speed = 50.0
+RotationSpeed = 2.0
 
 [node name="Visual" type="Line2D" parent="."]
 position = Vector2(-24, 19)
