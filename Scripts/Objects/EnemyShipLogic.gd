@@ -9,13 +9,10 @@ extends GameEntity
 @export var EnergyRestoreValue:float = 0.5
 @export var SeekSlowingRadius:float = 100.0
 
-@onready var Visual:Polygon2D = $Visual
-@onready var Colider:CollisionPolygon2D = $Colider
 @onready var VisionArea:Area2D = $VisionArea
 @onready var ShootArea:Area2D = $ShootArea
 @onready var BulletPosition:Marker2D = $BulletPosition
 @onready var EngineFireParticles:GPUParticles2D = $EngineFireParticles
-@onready var AudioPlayer:AudioStreamPlayer2D = $AudioPlayer
 
 var CanShoot:bool = true 
 var Target:Node2D
@@ -56,8 +53,7 @@ func Shoot():
 		Bullet.translate(BulletPosition.global_position)
 		Bullet.rotation = rotation
 		Energy -= ShootEnergyCost
-		AudioPlayer.stream = ShootSound
-		AudioPlayer.play()
+		PlaySound(ShootSound)
 
 func RotateTo(Target:Node2D):
 	var VectorToTarget:Vector2 = linear_velocity - transform.x
@@ -80,7 +76,8 @@ func Flee(Target:Node2D):
 	return Steering
 
 func Destroy():
-	get_parent().AddParticlesObject(30, true, 1.5, true, DestroyParticlesMaterial, position)
+	get_parent().AddSoundObject('res://Sound/AsteroidDestroy.mp3', position)
+	get_parent().AddParticlesObject(30, true, 1.5, true, DestroyParticlesMaterial, position, GetColor())
 	super.Destroy()
 
 func _on_shoot_area_body_entered(body):
@@ -96,3 +93,7 @@ func _on_vision_area_body_entered(body):
 func _on_vision_area_body_exited(body):
 	if body in AvoidObjects:
 		AvoidObjects.erase(body)
+
+func _on_body_entered(body):
+	if body.has_method('Hurt'):
+		body.Hurt(ContactDamage)

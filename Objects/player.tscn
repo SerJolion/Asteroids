@@ -18,6 +18,9 @@ linear_damp = 1.0
 angular_damp = 1.0
 script = ExtResource("1_kt0p5")
 FireDamage = 100.0
+VisualNode = NodePath("Visual")
+ColiderNode = NodePath("Colider")
+AudioPlayerNode = NodePath("AudioPlayer")
 
 [node name="Visual" type="Polygon2D" parent="."]
 polygon = PackedVector2Array(10, 0, -6, -8, -6, 8)

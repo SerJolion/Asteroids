@@ -27,27 +27,28 @@ func GetPlayer()->RigidBody2D:
 	return Player
 
 func SpawnAsteroid()->void:
-	var NewAsteroid:Node2D = AsteroidSCene.instantiate()
+	var NewAsteroid:RigidBody2D = AsteroidSCene.instantiate()
 	AsteroidSpawnPoint.progress_ratio = randf()
 	add_child(NewAsteroid)
 	NewAsteroid.translate(AsteroidSpawnPoint.position)
 	var Direction:Vector2 = Vector2.ZERO
 	if AsteroidSpawnPoint.position.x > MaxXCoord:
 		Direction.x = -1
-		Direction.y = randi_range(0,MaxYCoord)
+		#Direction.y = randi_range(0,MaxYCoord)
 	if AsteroidSpawnPoint.position.x <= 0:
 		Direction.x = 1
-		Direction.y = randi_range(0,MaxYCoord)
+		#Direction.y = randi_range(0,MaxYCoord)
 	if AsteroidSpawnPoint.position.y > MaxYCoord:
-		Direction.x = randi_range(0,MaxXCoord)
+		#Direction.x = randi_range(0,MaxXCoord)
 		Direction.y = -1
 	if AsteroidSpawnPoint.position.y <= 0:
-		Direction.x = randi_range(0,MaxXCoord)
+		#Direction.x = randi_range(0,MaxXCoord)
 		Direction.y = 1
-	NewAsteroid.SetDirection(Direction.normalized())
-	
+	NewAsteroid.Speed = randf_range(50.0, 200.0)
+	NewAsteroid.constant_force = Direction.normalized() * NewAsteroid.Speed
+	NewAsteroid.RotationSpeed = randf_range(1.0, 3.0)
 
-func AddParticlesObject(Count:int, OneShot:bool, LifeTime:float, Explosion:bool ,ParticleMaterial:ParticleProcessMaterial, Position:Vector2)->void:
+func AddParticlesObject(Count:int, OneShot:bool, LifeTime:float, Explosion:bool ,ParticleMaterial:ParticleProcessMaterial, Position:Vector2, color:Color=Color.WHITE)->void:
 	var Particles:GPUParticles2D = GPUParticles2D.new()
 	Particles.amount = Count
 	Particles.lifetime = LifeTime
@@ -57,6 +58,7 @@ func AddParticlesObject(Count:int, OneShot:bool, LifeTime:float, Explosion:bool 
 	if Explosion:
 		Particles.explosiveness = 1
 	Particles.process_material = ParticleMaterial
+	Particles.self_modulate = color
 	Add2DObject(Particles, Position)
 
 func AddSoundObject(SoundPath:String, Position:Vector2):

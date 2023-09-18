@@ -9,7 +9,7 @@ signal FuelIsFull
 @onready var Particles:GPUParticles2D = $Particles
 @onready var BulletPostition:Node2D = $BulletPosition
 @onready var InvincibleTimer:Timer = $InvincibleTimer
-@onready var AudioPlayer:AudioStreamPlayer2D = $AudioPlayer
+#@onready var AudioPlayer:AudioStreamPlayer2D = $AudioPlayer
 @onready var DisplayWidth:int =  ProjectSettings.get_setting("display/window/size/viewport_width")
 @onready var DisplayHeight:int = ProjectSettings.get_setting("display/window/size/viewport_height")
 
@@ -69,12 +69,11 @@ func Shoot():
 		Bullet.Damage = FireDamage
 		Bullet.translate(BulletPostition.global_position)
 		Bullet.rotation = rotation
-		AudioPlayer.stream = PewSound
-		AudioPlayer.play()
+		PlaySound(PewSound)
 
 func _on_invincible_timer_timeout():
 	Invincible = false
 
 func _on_body_entered(body):
-	if body.has_method('AddDamage'):
-		body.AddDamage(ContactDamage)
+	if body.has_method('Hurt'):
+		body.Hurt(ContactDamage)

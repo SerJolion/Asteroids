@@ -8,6 +8,9 @@ signal EffectAdded(effect:Effect)
 signal EffectRemoved(EffectId)
 signal Destroed
 
+@export_node_path("CanvasItem") var VisualNode:NodePath
+@export_node_path("Node2D") var ColiderNode:NodePath
+@export_node_path("AudioStreamPlayer2D") var AudioPlayerNode:NodePath
 @export_category('Movement')
 @export var Speed:float = 150.0
 @export var RotationSpeed:float = 150.0
@@ -16,10 +19,19 @@ signal Destroed
 @export var MaxEnergy:float = 100.0
 @export var ContactDamage:float = 50.0
 
+@onready var Visual:Polygon2D = get_node(VisualNode)
+@onready var Colider:CollisionPolygon2D = get_node(ColiderNode)
+@onready var AudioPlayer:AudioStreamPlayer2D = get_node(AudioPlayerNode)
+
 var Health:float = 1 : set = SetHealth
 var Energy:float = 1 : set = SetEnergy
 var Invincible:bool = false
 var Effects:Dictionary = {}
+
+#func _ready():
+#	Visual = get_node(VisualNode)
+#	Colider = get_node(ColiderNode)
+#	AudioPlayer = get_node(AudioPlayerNode)
 
 func _process(delta):
 	pass
@@ -49,6 +61,26 @@ func RemoveEffect(EffectId:String):
 		Effects[EffectId].End(self,get_parent())
 		Effects.erase(EffectId)
 		EffectRemoved.emit(EffectId)
+
+func SetColor(color:Color):
+	if Visual != null:
+		Visual.color = color
+	else:
+		push_warning('{0}:Невозможно поменять цвет. Отсутсвует Visual'.format([name]))
+
+func GetColor()->Color:
+	if Visual != null:
+		return Visual.color
+	else:
+		push_warning('{0}:Невозможно получить цвет. Отсутсвует Visual'.format([name]))
+		return Color.WHITE
+
+func PlaySound(Sound:AudioStream):
+	if AudioPlayer != null:
+		AudioPlayer.stream = Sound
+		AudioPlayer.play()
+	else:
+		push_warning('{0}:Невозможно проиграть звук. отсутсвует AudioStreamPlayer'.format([name]))
 
 func SetHealth(value:float)->void:
 	Health = clamp(value, 0, MaxHealth)

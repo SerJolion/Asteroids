@@ -1,182 +1,41 @@
-[gd_scene load_steps=22 format=3 uid="uid://dl81odprhwp4t"]
+[gd_scene load_steps=2 format=3 uid="uid://dl81odprhwp4t"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/AsteroidLogic.gd" id="1_qljo3"]
-[ext_resource type="Texture2D" uid="uid://d4cawp0rmkvfi" path="res://Sprites/SmokeEffect.png" id="2_dttfd"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6vttx"]
-atlas = ExtResource("2_dttfd")
-region = Rect2(0, 448, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ecsqg"]
-atlas = ExtResource("2_dttfd")
-region = Rect2(64, 448, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3drsd"]
-atlas = ExtResource("2_dttfd")
-region = Rect2(128, 448, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eiycv"]
-atlas = ExtResource("2_dttfd")
-region = Rect2(192, 448, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g6acf"]
-atlas = ExtResource("2_dttfd")
-region = Rect2(256, 448, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bfwxn"]
-atlas = ExtResource("2_dttfd")
-region = Rect2(320, 448, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rhs8w"]
-atlas = ExtResource("2_dttfd")
-region = Rect2(384, 448, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0krsj"]
-atlas = ExtResource("2_dttfd")
-region = Rect2(448, 448, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_541qk"]
-atlas = ExtResource("2_dttfd")
-region = Rect2(512, 448, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mw6ms"]
-atlas = ExtResource("2_dttfd")
-region = Rect2(0, 384, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a6qbw"]
-atlas = ExtResource("2_dttfd")
-region = Rect2(64, 384, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4d418"]
-atlas = ExtResource("2_dttfd")
-region = Rect2(128, 384, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dairl"]
-atlas = ExtResource("2_dttfd")
-region = Rect2(192, 384, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kpbc7"]
-atlas = ExtResource("2_dttfd")
-region = Rect2(256, 384, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ipm4f"]
-atlas = ExtResource("2_dttfd")
-region = Rect2(320, 384, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wycmh"]
-atlas = ExtResource("2_dttfd")
-region = Rect2(384, 384, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7h3jc"]
-atlas = ExtResource("2_dttfd")
-region = Rect2(448, 384, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gvw5q"]
-atlas = ExtResource("2_dttfd")
-region = Rect2(512, 384, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_86h8q"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": null
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6vttx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ecsqg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3drsd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eiycv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g6acf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bfwxn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rhs8w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0krsj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_541qk")
-}],
-"loop": false,
-"name": &"DestroyBig",
-"speed": 25.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": null
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mw6ms")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a6qbw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4d418")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dairl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kpbc7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ipm4f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wycmh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7h3jc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gvw5q")
-}],
-"loop": true,
-"name": &"DestroyMedium",
-"speed": 25.0
-}]
 
 [node name="AsteroidLarge" type="RigidBody2D"]
-mass = 10.0
-inertia = 10.0
+inertia = 0.5
 gravity_scale = 0.0
 max_contacts_reported = 3
 contact_monitor = true
 script = ExtResource("1_qljo3")
-SpawnPositionOffset = 75
-SpawnObjectsCount = 3
-SpawnObjectScenePath = "res://Objects/AsteroidMedium.tscn"
+VisualNode = NodePath("Visual")
+ColiderNode = NodePath("Colider")
+AudioPlayerNode = NodePath("AudioPlayer")
 Speed = 50.0
-RotationSpeed = 2.0
-
-[node name="Visual" type="Line2D" parent="."]
-position = Vector2(-24, 19)
-points = PackedVector2Array(-38, -35, 26, -80, 82, -28, 70, 28, 13, 40, -34, 22, -37, -37)
-width = 5.0
+RotationSpeed = 0.5
 
 [node name="Colider" type="CollisionPolygon2D" parent="."]
 position = Vector2(-24, 19)
-polygon = PackedVector2Array(-39, -37, 26, -83, 85, -29, 72, 30, 14, 43, -36, 25)
+polygon = PackedVector2Array(-40, -35, 24, -83, 88, -27, 72, 30, 16, 45, -32, 29)
+
+[node name="Visual" type="Polygon2D" parent="."]
+color = Color(0.54902, 0.54902, 0.54902, 1)
+polygon = PackedVector2Array(0, -64, 64, -8, 48, 48, -8, 64, -56, 48, -64, -16)
 
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
 
-[node name="AnimationSprite" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(-1, 5)
-scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_86h8q")
-animation = &"DestroyBig"
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="FirstPoint" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(-32, 32)
+rotation = 2.62443
+
+[node name="SecondPoint" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(0, -40)
+rotation = -1.57349
+
+[node name="ThirdPoint" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(32, 24)
+rotation = 0.779634
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

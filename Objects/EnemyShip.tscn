@@ -14,6 +14,9 @@ gravity_scale = 0.0
 script = ExtResource("1_lncbu")
 ShootEnergyCost = 9.0
 EnergyRestoreValue = 0.05
+VisualNode = NodePath("Visual")
+ColiderNode = NodePath("Colider")
+AudioPlayerNode = NodePath("AudioPlayer")
 MaxEnergy = 10.0
 ContactDamage = 10.0
 
@@ -49,6 +52,7 @@ lifetime = 0.5
 
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
 [connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]
 [connection signal="body_entered" from="ShootArea" to="." method="_on_shoot_area_body_entered"]
