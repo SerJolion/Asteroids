@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnbqpn7sbdx8q"]
+[gd_scene load_steps=5 format=3 uid="uid://cnbqpn7sbdx8q"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/EnemyShipLogic.gd" id="1_lncbu"]
+[ext_resource type="Material" uid="uid://b2iayc63jw1q5" path="res://Materials/Particles/ShipFire.material" id="2_10y5a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_23jax"]
 radius = 230.078
@@ -17,15 +18,16 @@ MaxEnergy = 10.0
 ContactDamage = 10.0
 
 [node name="Colider" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-12, -16, -12, 16, 18, 0)
+polygon = PackedVector2Array(-8, -16, -8, 16, 18, 0)
 
 [node name="Visual" type="Polygon2D" parent="."]
 position = Vector2(5, 0)
-polygon = PackedVector2Array(13, 0, -9, -12, -21, -11, -10, -5, -10, 4, -21, 7, -10, 13)
+color = Color(1, 0.301961, 0.235294, 1)
+polygon = PackedVector2Array(13, 0, -13, -16, -21, -8, -13, -8, -10, -5, -10, 4, -13, 8, -21, 8, -13, 16)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="VisionArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea"]
 shape = SubResource("CircleShape2D_23jax")
 
 [node name="ShootArea" type="Area2D" parent="."]
@@ -39,6 +41,14 @@ debug_color = Color(0.701961, 0, 0.0823529, 0.419608)
 [node name="BulletPosition" type="Marker2D" parent="."]
 position = Vector2(31, 0)
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="EngineFireParticles" type="GPUParticles2D" parent="."]
+position = Vector2(-8, 0)
+amount = 20
+process_material = ExtResource("2_10y5a")
+lifetime = 0.5
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
+[connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]
 [connection signal="body_entered" from="ShootArea" to="." method="_on_shoot_area_body_entered"]

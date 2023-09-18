@@ -29,7 +29,6 @@ func _exit_tree():
 	get_parent().PlayerDestroed.emit()
 
 func _physics_process(delta):
-	draw_line(global_position, linear_velocity, Color.AQUA)
 	if Input.is_action_just_pressed("ui_accept"):
 		Shoot()
 

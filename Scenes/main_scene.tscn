@@ -38,6 +38,7 @@ rotation = 3.13428
 
 [node name="EnemyShip" parent="World" instance=ExtResource("6_iqrp3")]
 position = Vector2(751, 262)
+SeekSlowingRadius = 200.0
 Speed = 100.0
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
