@@ -3,21 +3,24 @@
 [ext_resource type="Script" path="res://Scripts/Objects/AsteroidLogic.gd" id="1_1y7sm"]
 
 [node name="AsteroidMedium" type="RigidBody2D"]
-mass = 5.0
-inertia = 5.0
+mass = 3.3
+inertia = 0.5
 gravity_scale = 0.0
 script = ExtResource("1_1y7sm")
-Speed = 50.0
+VisualNode = NodePath("Visual")
+ColiderNode = NodePath("Colider")
+AudioPlayerNode = NodePath("AudioPlayer")
+Speed = 100.0
 RotationSpeed = 2.0
-Health = 50.0
 
-[node name="Colider" type="Line2D" parent="."]
-position = Vector2(-9, 10)
-points = PackedVector2Array(-19, -12, 4, -28, 23, -23, 35, 0, 16, 13, 0, -3, -20, -14)
-width = 5.0
+[node name="Colider" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-31, -27, 9, -27, 33, -11, 25, 5, 33, 21, 25, 37, -23, 21)
 
-[node name="Visual" type="CollisionPolygon2D" parent="."]
-position = Vector2(-9, 10)
-polygon = PackedVector2Array(-22, -13, 4, -31, 25, -25, 38, 1, 15, 16, -2, -1)
+[node name="Visual" type="Polygon2D" parent="."]
+position = Vector2(33, -27)
+color = Color(0.54902, 0.54902, 0.54902, 1)
+polygon = PackedVector2Array(-56, 48, -8, 64, 0, 48, -8, 32, 0, 16, -24, 0, -64, 0)
 
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SpawnPoints" type="Node2D" parent="."]

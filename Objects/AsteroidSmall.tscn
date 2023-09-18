@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd4lm1dop1lid"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/AsteroidLogic.gd" id="1_ouybr"]
+
+[node name="AsteroidMedium" type="RigidBody2D"]
+mass = 5.0
+inertia = 5.0
+gravity_scale = 0.0
+script = ExtResource("1_ouybr")
+VisualNode = NodePath("Visual")
+ColiderNode = NodePath("Colider")
+AudioPlayerNode = NodePath("AudioPlayer")
+Speed = 50.0
+RotationSpeed = 2.0
+
+[node name="Colider" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-17, -13, 18, -13, 14, -1, 14, 14, -13, 14)
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Visual" type="Polygon2D" parent="."]
+position = Vector2(14, 14)
+polygon = PackedVector2Array(-31, -27, 4, -27, 0, -15, 0, 0, -27, 0)

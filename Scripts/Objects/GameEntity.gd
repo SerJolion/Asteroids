@@ -18,20 +18,17 @@ signal Destroed
 @export var MaxHealth:float = 100.0
 @export var MaxEnergy:float = 100.0
 @export var ContactDamage:float = 50.0
+@export_file('*.tscn') var DropScenePath:String
 
 @onready var Visual:Polygon2D = get_node(VisualNode)
 @onready var Colider:CollisionPolygon2D = get_node(ColiderNode)
 @onready var AudioPlayer:AudioStreamPlayer2D = get_node(AudioPlayerNode)
+@onready var DropScene:PackedScene = load(DropScenePath)
 
 var Health:float = 1 : set = SetHealth
 var Energy:float = 1 : set = SetEnergy
 var Invincible:bool = false
 var Effects:Dictionary = {}
-
-#func _ready():
-#	Visual = get_node(VisualNode)
-#	Colider = get_node(ColiderNode)
-#	AudioPlayer = get_node(AudioPlayerNode)
 
 func _process(delta):
 	pass
@@ -98,4 +95,8 @@ func Hurt(Damage:float):
 
 func Destroy():
 	Destroed.emit()
+	if DropScene != null:
+		var Drop:Node2D = DropScene.instantiate()
+		get_parent().add_child(Drop)
+		Drop.position = position
 	queue_free()

@@ -5,6 +5,7 @@ signal PlayerDestroed
 
 @onready var PlayerScene:PackedScene = load("res://Objects/player.tscn")
 @onready var AsteroidSCene:PackedScene = load("res://Objects/AsteroidLarge.tscn")
+@onready var EnemyShipScene:PackedScene = load("res://Objects/EnemyShip.tscn")
 
 @onready var Player:RigidBody2D = null
 @onready var PlayerStartPosition:Marker2D = $PlayerStartPosition
@@ -27,6 +28,11 @@ func GetPlayer()->RigidBody2D:
 	return Player
 
 func SpawnAsteroid()->void:
+	if randf() <= 1:
+		var NewShip:RigidBody2D = EnemyShipScene.instantiate()
+		NewShip.translate(AsteroidSpawnPoint.global_position)
+		NewShip.Target = Player
+		add_child(NewShip)
 	var NewAsteroid:RigidBody2D = AsteroidSCene.instantiate()
 	AsteroidSpawnPoint.progress_ratio = randf()
 	add_child(NewAsteroid)

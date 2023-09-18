@@ -31,11 +31,15 @@ func _physics_process(delta):
 
 func Destroy():
 	if SpawnObjects:
-		for i in 2:
+		for i in 3:
 			var Scene:PackedScene = load(SpawnObjectsScenes[i])
 			var NewSpawnObject:Node2D = Scene.instantiate()
 			get_parent().add_child(NewSpawnObject)
-			NewSpawnObject.translate($SpawnPoints.get_children()[i].position) 
+			NewSpawnObject.translate($SpawnPoints.get_children()[i].global_position)
+			if 'SpawnPointsContainer' in NewSpawnObject:
+				NewSpawnObject.Speed = randf_range(100, 300)
+				NewSpawnObject.constant_force = $SpawnPoints.get_children()[i].transform.x.normalized() * NewSpawnObject.Speed
+				NewSpawnObject.RotationSpeed = randf_range(1.0, 3.0) 
 	get_parent().AddParticlesObject(30, true, 1.5, true, DestroyParticlesMaterial, position, Visual.color)
 	get_parent().AddSoundObject('res://Sound/AsteroidDestroy.mp3', position)
 	super.Destroy()
