@@ -8,8 +8,11 @@ func _ready():
 func _process(delta):
 	pass
 
-func Pause():
-	pass
+func SetScene(Scene:PackedScene):
+	get_tree().change_scene_to_packed(Scene)
+
+func Pause(value:bool):
+	get_tree().paused = value
 
 func Exit():
-	pass
+	get_tree().quit()

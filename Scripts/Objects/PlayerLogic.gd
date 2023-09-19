@@ -14,7 +14,7 @@ signal FuelIsFull
 @onready var DisplayHeight:int = ProjectSettings.get_setting("display/window/size/viewport_height")
 
 @export var FireDamage:float = 10
-@export var MaxFuel:float = 10.0
+@export var MaxFuel:float = 100.0
 @export var EnergyRestoreSpeed:float = 0.5
 @export var ShootEnergyCost: float = 10.0
 

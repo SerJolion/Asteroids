@@ -12,6 +12,7 @@ ColiderNode = NodePath("Colider")
 AudioPlayerNode = NodePath("AudioPlayer")
 Speed = 100.0
 RotationSpeed = 2.0
+DropScenePath = "res://Objects/Powerups/FuelPowerUp.tscn"
 
 [node name="Colider" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-31, -27, 9, -27, 33, -11, 25, 5, 33, 21, 25, 37, -23, 21)

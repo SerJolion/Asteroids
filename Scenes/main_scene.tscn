@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://df0pvqa8am0gy"]
+[gd_scene load_steps=9 format=3 uid="uid://df0pvqa8am0gy"]
 
 [ext_resource type="Script" path="res://Scripts/WorldLogic.gd" id="1_iph1a"]
 [ext_resource type="Script" path="res://Scripts/GameLogic.gd" id="1_j73ng"]
 [ext_resource type="AudioStream" uid="uid://cwwa5pph84742" path="res://Sound/TestAmbient.mp3" id="4_lo31j"]
 [ext_resource type="PackedScene" uid="uid://d4mhe8clsfr08" path="res://Objects/Interfaces/UserInterfase.tscn" id="4_qcs80"]
+[ext_resource type="Theme" uid="uid://dc26lc4mqpmgp" path="res://Themes/MainTheme.theme" id="5_o6kin"]
 [ext_resource type="PackedScene" uid="uid://co3suo3oilyus" path="res://Objects/Powerups/FuelPowerUp.tscn" id="6_evpha"]
 [ext_resource type="PackedScene" uid="uid://cnbqpn7sbdx8q" path="res://Objects/EnemyShip.tscn" id="6_iqrp3"]
 
@@ -46,6 +47,7 @@ Speed = 100.0
 process_mode = 3
 
 [node name="UserInterfase" parent="InterfaceLayer" instance=ExtResource("4_qcs80")]
+theme = ExtResource("5_o6kin")
 
 [node name="AmbientSoundPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_lo31j")

@@ -1,0 +1,116 @@
+[gd_scene load_steps=3 format=3 uid="uid://casytkx2bbi4u"]
+
+[ext_resource type="Script" path="res://Scripts/StartSceneLogic.gd" id="1_w5ffy"]
+[ext_resource type="Theme" uid="uid://dc26lc4mqpmgp" path="res://Themes/MainTheme.theme" id="2_3slrp"]
+
+[node name="Root" type="Node"]
+script = ExtResource("1_w5ffy")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="InterfaceLayer" type="CanvasLayer" parent="."]
+
+[node name="MenuControll" type="Control" parent="InterfaceLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_3slrp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InterfaceLayer/MenuControll"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_right = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Titel" type="Label" parent="InterfaceLayer/MenuControll/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = " Астероиды"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="InterfaceLayer/MenuControll/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+text = "Начать"
+
+[node name="OptionButton" type="Button" parent="InterfaceLayer/MenuControll/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+text = "Настройки"
+
+[node name="ExitButton" type="Button" parent="InterfaceLayer/MenuControll/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+text = "Выход
+"
+
+[node name="OptionPanel" type="Panel" parent="InterfaceLayer/MenuControll"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="InterfaceLayer/MenuControll/OptionPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="AcceptButton" type="Button" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Accept"
+
+[node name="CancelButton" type="Button" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="pressed" from="InterfaceLayer/MenuControll/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="InterfaceLayer/MenuControll/VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="InterfaceLayer/MenuControll/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/HBoxContainer/AcceptButton" to="." method="_on_accept_button_pressed"]
+[connection signal="pressed" from="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
