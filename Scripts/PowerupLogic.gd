@@ -1,12 +1,6 @@
 extends Node2D
 
-@export_file('*.png') var PathToVisualSprite:String
-@export_file('*.tres') var PathToCurrentEffect:String
-
-var CurrentEffect:Effect
-
-func _ready():
-	CurrentEffect = load(PathToCurrentEffect)
+@export var CurrentEffect:Effect
 
 func _process(delta):
 	pass
