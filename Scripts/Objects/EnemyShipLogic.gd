@@ -1,6 +1,6 @@
 extends GameEntity
 
-@onready var BulletScene:PackedScene = load("res://Objects/Bullet.tscn")
+@onready var BulletScene:PackedScene = load("res://Objects/Projectiles/Bullet.tscn")
 @onready var ShootSound:AudioStreamMP3 = load("res://Sound/pew.mp3")
 @onready var DestroyParticlesMaterial:ParticleProcessMaterial = load('res://Materials/Particles/AsteroidDestroy.material')
 

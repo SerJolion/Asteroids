@@ -121,6 +121,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="PauseMenuPanel" type="Panel" parent="MarginContainer/VBoxContainer/Main"]
+visible = false
 custom_minimum_size = Vector2(250, 250)
 layout_mode = 1
 anchors_preset = 8
@@ -186,6 +187,7 @@ focus_mode = 0
 text = "Выйти из игры"
 
 [node name="MesagePanel" type="Panel" parent="MarginContainer/VBoxContainer/Main"]
+visible = false
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 1
 anchors_preset = 8

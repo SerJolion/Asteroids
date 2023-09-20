@@ -3,7 +3,7 @@ extends GameEntity
 signal FuelChanget(NewValue, MaxValue)
 signal FuelIsFull
 
-@onready var BulletScene:PackedScene = load("res://Objects/Bullet.tscn")
+@onready var BulletScene:PackedScene = load("res://Objects/Projectiles/Bullet.tscn")
 @onready var PewSound:AudioStreamMP3 = load("res://Sound/pew.mp3")
 @onready var AddEffectSound:AudioStreamMP3 = load("res://Sound/AddEffectSound.mp3")
 

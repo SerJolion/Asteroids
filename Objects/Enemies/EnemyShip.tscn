@@ -17,8 +17,9 @@ EnergyRestoreValue = 0.05
 VisualNode = NodePath("Visual")
 ColiderNode = NodePath("Colider")
 AudioPlayerNode = NodePath("AudioPlayer")
+MaxHealth = 30.0
 MaxEnergy = 10.0
-ContactDamage = 10.0
+ContactDamage = 20.0
 DropScenePath = "res://Objects/Powerups/FuelPowerUp.tscn"
 
 [node name="Colider" type="CollisionPolygon2D" parent="."]

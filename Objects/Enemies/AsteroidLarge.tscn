@@ -4,18 +4,20 @@
 
 [node name="AsteroidLarge" type="RigidBody2D"]
 mass = 10.0
-inertia = 0.5
+inertia = 10.0
 gravity_scale = 0.0
 max_contacts_reported = 3
 contact_monitor = true
 script = ExtResource("1_qljo3")
 SpawnObjects = true
-SpawnObjectsScenes = Array[String](["res://Objects/AsteroidMedium.tscn", "res://Objects/AsteroidMedium.tscn", "res://Objects/AsteroidMedium.tscn"])
+SpawnObjectsScenes = Array[String](["res://Objects/Enemies/AsteroidMedium.tscn", "res://Objects/Enemies/AsteroidMedium.tscn", "res://Objects/Enemies/AsteroidMedium.tscn"])
 VisualNode = NodePath("Visual")
 ColiderNode = NodePath("Colider")
 AudioPlayerNode = NodePath("AudioPlayer")
 Speed = 50.0
 RotationSpeed = 0.5
+MaxHealth = 50.0
+MaxEnergy = 0.0
 
 [node name="Colider" type="CollisionPolygon2D" parent="."]
 position = Vector2(-24, 19)
