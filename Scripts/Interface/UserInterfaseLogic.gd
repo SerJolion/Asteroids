@@ -6,8 +6,16 @@ extends Control
 @onready var EnergyBar:ProgressBar = $MarginContainer/VBoxContainer/BarsContainer/EnergyContainer/EnergyBar
 @onready var FuelBar:ProgressBar = $MarginContainer/VBoxContainer/BarsContainer/FuelContainer/FuelBar
 @onready var EffectIconContainer:HBoxContainer = $MarginContainer/VBoxContainer/EffectsIconContainer
+@onready var PauseMEnuPanel:Panel = $MarginContainer/VBoxContainer/Main/PauseMenuPanel
 
 var ActiveEffectIcons:Dictionary = {}
+
+func _ready():
+	PauseMEnuPanel.hide()
+
+func _process(delta):
+	if Input.is_action_just_pressed('ui_cancel'):
+		ShowPauseMenu()
 
 func Init(player:Node2D)->void:
 	player.HealthChanged.connect(UpdateHealthBar)
@@ -30,6 +38,14 @@ func ShowEndGamePanel(Title:String, TitleColor:Color):
 	add_child(EndGamePanel)
 	EndGamePanel.SetTitle(Title, TitleColor)
 
+func ShowPauseMenu()->void:
+	Global.Pause(true)
+	PauseMEnuPanel.show()
+
+func ClosePauseMenu()->void:
+	Global.Pause(false)
+	PauseMEnuPanel.hide()
+
 func AddActiveEffectIcon(effect:Effect):
 	if effect.VisibleIcon:
 		var NewIcon:TextureRect = TextureRect.new()
@@ -42,3 +58,14 @@ func RemoveEffectIcon(EffectName:String):
 	if EffectName in ActiveEffectIcons.keys():
 		ActiveEffectIcons[EffectName].queue_free()
 		ActiveEffectIcons.erase(EffectName)
+
+
+func _on_resume_button_pressed():
+	ClosePauseMenu()
+
+func _on_main_menu_button_pressed():
+	Global.Pause(false)
+	Global.SetScene(load("res://Scenes/StartScene.tscn"))
+
+func _on_exit_button_pressed():
+	Global.Exit()

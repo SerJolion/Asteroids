@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4mhe8clsfr08"]
+[gd_scene load_steps=3 format=3 uid="uid://d4mhe8clsfr08"]
 
 [ext_resource type="Script" path="res://Scripts/Interface/UserInterfaseLogic.gd" id="1_1h2w6"]
+[ext_resource type="Theme" uid="uid://dc26lc4mqpmgp" path="res://Themes/MainTheme.theme" id="2_mc6i4"]
 
 [node name="UserInterfase" type="Control"]
 layout_mode = 3
@@ -87,3 +88,69 @@ alignment = 1
 [node name="Main" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="PauseMenuPanel" type="Panel" parent="MarginContainer/VBoxContainer/Main"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_mc6i4")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Main/PauseMenuPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Main/PauseMenuPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Main/PauseMenuPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Меню паузы"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/Main/PauseMenuPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Main/PauseMenuPanel/MarginContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="MarginContainer/VBoxContainer/Main/PauseMenuPanel/MarginContainer/VBoxContainer/Control/VBoxContainer"]
+layout_mode = 2
+text = "Продолжить"
+
+[node name="MainMenuButton" type="Button" parent="MarginContainer/VBoxContainer/Main/PauseMenuPanel/MarginContainer/VBoxContainer/Control/VBoxContainer"]
+layout_mode = 2
+text = "Главное меню"
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/Main/PauseMenuPanel/MarginContainer/VBoxContainer/Control/VBoxContainer"]
+layout_mode = 2
+text = "Выйти из игры"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Main/PauseMenuPanel/MarginContainer/VBoxContainer/Control/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Main/PauseMenuPanel/MarginContainer/VBoxContainer/Control/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Main/PauseMenuPanel/MarginContainer/VBoxContainer/Control/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://dc26lc4mqpmgp" path="res://Themes/MainTheme.theme" id="2_3slrp"]
 
 [node name="Root" type="Node"]
+process_mode = 3
 script = ExtResource("1_w5ffy")
 
 [node name="World" type="Node2D" parent="."]
@@ -60,6 +61,7 @@ text = "Выход
 "
 
 [node name="OptionPanel" type="Panel" parent="InterfaceLayer/MenuControll"]
+visible = false
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 1
 anchors_preset = 8
