@@ -3,6 +3,9 @@ extends Node
 @onready var StartScene:PackedScene = load("res://Scenes/StartScene.tscn")
 @onready var MainScene:PackedScene = load("res://Scenes/main_scene.tscn")
 
+var PlayerColor:Color = Color.WHITE
+var Backgroundcolor:Color = Color.BLACK
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

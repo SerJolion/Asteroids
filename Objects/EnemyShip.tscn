@@ -52,6 +52,7 @@ process_material = ExtResource("2_10y5a")
 lifetime = 0.5
 
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+bus = &"Effects"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]

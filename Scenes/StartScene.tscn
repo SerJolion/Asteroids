@@ -61,7 +61,6 @@ text = "Выход
 "
 
 [node name="OptionPanel" type="Panel" parent="InterfaceLayer/MenuControll"]
-visible = false
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 1
 anchors_preset = 8
@@ -89,7 +88,7 @@ layout_mode = 2
 
 [node name="Title" type="Label" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Menu"
+text = "Настройки "
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -97,17 +96,102 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="ScrollContainer" type="ScrollContainer" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SoundSliderContainer" type="HBoxContainer" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/SoundSliderContainer"]
+layout_mode = 2
+text = "Громоксть звука:"
+
+[node name="SoundSlider" type="HSlider" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/SoundSliderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -72.0
+max_value = 0.0
+
+[node name="MusicSliderContainer" type="HBoxContainer" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/MusicSliderContainer"]
+layout_mode = 2
+text = "Громоксть музыки:"
+
+[node name="MusicSlider" type="HSlider" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/MusicSliderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -72.0
+max_value = 0.0
+
+[node name="EffectSliderContainer" type="HBoxContainer" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/EffectSliderContainer"]
+layout_mode = 2
+text = "Громоксть эффектов:"
+
+[node name="EffectSlider" type="HSlider" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/EffectSliderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -72.0
+max_value = 0.0
+
+[node name="PlayerColorContainer" type="HBoxContainer" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/PlayerColorContainer"]
+layout_mode = 2
+text = "Цвет игрока: "
+
+[node name="PlayerColorPicker" type="ColorPickerButton" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/PlayerColorContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+color = Color(1, 1, 1, 1)
+edit_alpha = false
+
+[node name="DifficultCobtainer" type="HBoxContainer" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/DifficultCobtainer"]
+layout_mode = 2
+text = "Сложность: "
+
+[node name="OptionButton" type="OptionButton" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/DifficultCobtainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+selected = 0
+popup/item_0/text = "Легко"
+popup/item_0/id = 0
+popup/item_1/text = "Средне"
+popup/item_1/id = 1
+popup/item_2/text = "Сложно"
+popup/item_2/id = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
 [node name="AcceptButton" type="Button" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Accept"
+text = "Принять"
 
 [node name="CancelButton" type="Button" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Cancel"
+text = "Отменить"
 
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
 

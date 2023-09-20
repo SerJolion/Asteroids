@@ -41,6 +41,7 @@ position = Vector2(19, 0)
 [node name="InvincibleTimer" type="Timer" parent="."]
 
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+bus = &"Effects"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="InvincibleTimer" to="." method="_on_invincible_timer_timeout"]

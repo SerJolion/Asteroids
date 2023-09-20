@@ -19,6 +19,7 @@ func _ready():
 	Player = PlayerScene.instantiate()
 	add_child(Player)
 	Player.translate(PlayerStartPosition.position)
+	Player.SetColor(Global.PlayerColor)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -28,7 +29,7 @@ func GetPlayer()->RigidBody2D:
 	return Player
 
 func SpawnAsteroid()->void:
-	if randf() <= 1:
+	if randf() <= 1.0:
 		var NewShip:RigidBody2D = EnemyShipScene.instantiate()
 		NewShip.translate(AsteroidSpawnPoint.global_position)
 		NewShip.Target = Player
@@ -72,6 +73,7 @@ func AddSoundObject(SoundPath:String, Position:Vector2):
 	SoundObject.finished.connect(SoundObject.queue_free)
 	SoundObject.stream = load(SoundPath)
 	SoundObject.autoplay = true
+	SoundObject.bus = 'Effects'
 	Add2DObject(SoundObject, Position)
 
 func Add2DObject(Obj:Node2D, Position:Vector2 = Vector2.ZERO)->void:
