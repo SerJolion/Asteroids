@@ -78,6 +78,11 @@ func Flee(Target:Node2D):
 func Destroy():
 	get_parent().AddSoundObject('res://Sound/AsteroidDestroy.mp3', position)
 	get_parent().AddParticlesObject(30, true, 1.5, true, DestroyParticlesMaterial, position, GetColor())
+	var RNG:RandomNumberGenerator = RandomNumberGenerator.new()
+	var Chance:float = RNG.randf()
+	if Chance <= 0.5:
+		var Fuel:Node2D = load("res://Objects/Powerups/FuelPowerUp.tscn").instantiate()
+		get_parent().Add2DObject(Fuel, global_position)
 	super.Destroy()
 
 func _on_shoot_area_body_entered(body):

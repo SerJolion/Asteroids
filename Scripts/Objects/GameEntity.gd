@@ -23,12 +23,16 @@ signal Destroed
 @onready var Visual:Polygon2D = get_node(VisualNode)
 @onready var Colider:CollisionPolygon2D = get_node(ColiderNode)
 @onready var AudioPlayer:AudioStreamPlayer2D = get_node(AudioPlayerNode)
-@onready var DropScene:PackedScene = load(DropScenePath)
+#@onready var DropScene:PackedScene = load(DropScenePath)
 
-var Health:float = 1 : set = SetHealth
-var Energy:float = 1 : set = SetEnergy
+var Health:float = MaxHealth : set = SetHealth
+var Energy:float = MaxEnergy : set = SetEnergy
 var Invincible:bool = false
 var Effects:Dictionary = {}
+
+func _integrate_forces(state):
+	if linear_velocity.length() > Speed:
+		linear_velocity = linear_velocity.normalized() * Speed
 
 func _process(delta):
 	pass
@@ -95,8 +99,8 @@ func Hurt(Damage:float):
 
 func Destroy():
 	Destroed.emit()
-	if DropScene != null:
-		var Drop:Node2D = DropScene.instantiate()
-		get_parent().add_child(Drop)
-		Drop.position = position
+	#if DropScene != null:
+		#var Drop:Node2D = DropScene.instantiate()
+		#get_parent().add_child(Drop)
+		#Drop.position = position
 	queue_free()

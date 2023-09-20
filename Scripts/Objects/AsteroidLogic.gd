@@ -7,9 +7,6 @@ extends GameEntity
 @export var SpawnObjects:bool = false
 @export var SpawnObjectsScenes:Array[String]
 
-#@onready var Visual:Polygon2D = $Visual
-#@onready var Colider:CollisionPolygon2D = $Colider
-#@onready var AudioPlayer:AudioStreamPlayer2D = $AudioPlayer
 @onready var SpawnPointsContainer:Node2D = $SpawnPoints
 
 #var Direction:Vector2
@@ -20,10 +17,6 @@ func _ready():
 	constant_torque = RotationSpeed
 	MaxXCoord = get_parent().MaxXCoord
 	MaxYCoord = get_parent().MaxYCoord
-
-func _integrate_forces(state):
-	if linear_velocity.length() > Speed:
-		linear_velocity = linear_velocity.normalized() * Speed
 
 func _physics_process(delta):
 	if position.x > MaxXCoord + 200 or position.x < -200 or position.y > MaxYCoord+200 or position.y < -200:

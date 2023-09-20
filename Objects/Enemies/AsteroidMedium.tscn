@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/Objects/AsteroidLogic.gd" id="1_1y7sm"]
 
 [node name="AsteroidMedium" type="RigidBody2D"]
-mass = 3.3
-inertia = 0.5
+mass = 3.0
+inertia = 3.0
 gravity_scale = 0.0
 script = ExtResource("1_1y7sm")
 VisualNode = NodePath("Visual")
@@ -12,6 +12,9 @@ ColiderNode = NodePath("Colider")
 AudioPlayerNode = NodePath("AudioPlayer")
 Speed = 100.0
 RotationSpeed = 2.0
+MaxHealth = 20.0
+MaxEnergy = 0.0
+ContactDamage = 10.0
 DropScenePath = "res://Objects/Powerups/FuelPowerUp.tscn"
 
 [node name="Colider" type="CollisionPolygon2D" parent="."]

@@ -117,8 +117,10 @@ layout_mode = 2
 text = "Громоксть звука:"
 
 [node name="SoundSlider" type="HSlider" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/SoundSliderContainer"]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 min_value = -72.0
 max_value = 0.0
 
@@ -132,6 +134,7 @@ text = "Громоксть музыки:"
 [node name="MusicSlider" type="HSlider" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/MusicSliderContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 min_value = -72.0
 max_value = 0.0
 
@@ -145,6 +148,7 @@ text = "Громоксть эффектов:"
 [node name="EffectSlider" type="HSlider" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/EffectSliderContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 min_value = -72.0
 max_value = 0.0
 
@@ -172,6 +176,7 @@ text = "Сложность: "
 [node name="OptionButton" type="OptionButton" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/DifficultCobtainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 item_count = 3
 selected = 0
 popup/item_0/text = "Легко"
@@ -187,10 +192,12 @@ alignment = 1
 
 [node name="AcceptButton" type="Button" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 text = "Принять"
 
 [node name="CancelButton" type="Button" parent="InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 text = "Отменить"
 
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
