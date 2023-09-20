@@ -5,6 +5,7 @@ signal FuelIsFull
 
 @onready var BulletScene:PackedScene = load("res://Objects/Bullet.tscn")
 @onready var PewSound:AudioStreamMP3 = load("res://Sound/pew.mp3")
+@onready var AddEffectSound:AudioStreamMP3 = load("res://Sound/AddEffectSound.mp3")
 
 @onready var Particles:GPUParticles2D = $Particles
 @onready var BulletPostition:Node2D = $BulletPosition
@@ -54,6 +55,11 @@ func _physics_process(delta):
 		position = Vector2(position.x, DisplayHeight)
 		
 	ProcessEffects(delta)
+
+func AddEffect(_Effect:Effect):
+	super.AddEffect(_Effect)
+	AudioPlayer.stream = AddEffectSound
+	AudioPlayer.play()
 
 func SetFuel(value:float)->void:
 	Fuel = clamp(value, 0, MaxFuel)

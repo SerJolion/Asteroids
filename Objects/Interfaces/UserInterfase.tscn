@@ -1,7 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4mhe8clsfr08"]
+[gd_scene load_steps=6 format=3 uid="uid://d4mhe8clsfr08"]
 
 [ext_resource type="Script" path="res://Scripts/Interface/UserInterfaseLogic.gd" id="1_1h2w6"]
 [ext_resource type="Theme" uid="uid://dc26lc4mqpmgp" path="res://Themes/MainTheme.theme" id="2_mc6i4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ttdh3"]
+bg_color = Color(0.6, 0.294118, 0.294118, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ye46"]
+bg_color = Color(0.286275, 0.109804, 0.537255, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2um7"]
+bg_color = Color(0.305882, 0.419608, 0.6, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.8, 0.8, 0.8, 0)
 
 [node name="UserInterfase" type="Control"]
 layout_mode = 3
@@ -36,11 +60,14 @@ theme_override_constants/separation = 10
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("2_mc6i4")
 
 [node name="HealthBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/BarsContainer/HealthContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2_mc6i4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ttdh3")
 value = 100.0
 show_percentage = false
 
@@ -53,9 +80,11 @@ vertical_alignment = 1
 [node name="FuelContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BarsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("2_mc6i4")
 
 [node name="FuelBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/BarsContainer/FuelContainer"]
 layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_2ye46")
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/BarsContainer/FuelContainer"]
 layout_mode = 2
@@ -67,11 +96,13 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("2_mc6i4")
 
 [node name="EnergyBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/BarsContainer/EnergyContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/fill = SubResource("StyleBoxFlat_o2um7")
 value = 100.0
 show_percentage = false
 
@@ -199,6 +230,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+bbcode_enabled = true
 
 [node name="MessageOkButton" type="Button" parent="MarginContainer/VBoxContainer/Main/MesagePanel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 0)

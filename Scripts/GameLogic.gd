@@ -20,9 +20,9 @@ func Pause(value:bool)->void:
 	get_tree().paused = value
 
 func PlayerVin():
-	UserInterface.ShowEndGamePanel('Вы победили', Color.DARK_GREEN)
+	UserInterface.ShowMessagePanel('[color=green]Ты победил!', Global.SetStartScene)
 	Pause(true)
 
 func PlayerLose():
-	UserInterface.ShowEndGamePanel('Вы проиграли', Color.DARK_RED)
+	UserInterface.ShowMessagePanel('[color=red]Ты проиграл!', Global.SetStartScene)
 	Pause(true)

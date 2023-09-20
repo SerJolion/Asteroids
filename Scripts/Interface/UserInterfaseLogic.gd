@@ -1,7 +1,5 @@
 extends Control
 
-@onready var EndGamePanelScene:PackedScene =load("res://Objects/Interfaces/EndGamePanel.tscn")
-
 @onready var HealthBar:ProgressBar = $MarginContainer/VBoxContainer/BarsContainer/HealthContainer/HealthBar
 @onready var EnergyBar:ProgressBar = $MarginContainer/VBoxContainer/BarsContainer/EnergyContainer/EnergyBar
 @onready var FuelBar:ProgressBar = $MarginContainer/VBoxContainer/BarsContainer/FuelContainer/FuelBar
@@ -9,6 +7,7 @@ extends Control
 @onready var PauseMEnuPanel:Panel = $MarginContainer/VBoxContainer/Main/PauseMenuPanel
 @onready var MessagePanel:Panel = $MarginContainer/VBoxContainer/Main/MesagePanel
 @onready var MessageTextLabel:RichTextLabel = $MarginContainer/VBoxContainer/Main/MesagePanel/MarginContainer/VBoxContainer/ScrollContainer/RichTextLabel
+@onready var MessageOkButton:Button = $MarginContainer/VBoxContainer/Main/MesagePanel/MarginContainer/VBoxContainer/MessageOkButton
 
 var PauseOpened:bool = false
 var MessageOpened:bool = false
@@ -18,7 +17,7 @@ var ActiveEffectIcons:Dictionary = {}
 func _ready():
 	PauseMEnuPanel.hide()
 	MessagePanel.hide()
-	ShowMessagePanel('Тестовое сообщение')
+	ShowMessagePanel('Тестовое сообщение', func():print('Тест работает'))
 
 func _process(delta):
 	if Input.is_action_just_pressed('ui_cancel'):
@@ -44,16 +43,13 @@ func UpdateEnergyBar(value:float, MaxValue:float)->void:
 func UpdateFuelBar(value:float, MaxValue:float)->void:
 	FuelBar.value = (value * 100)/MaxValue
 
-func ShowEndGamePanel(Title:String, TitleColor:Color):
-	var EndGamePanel:Control = EndGamePanelScene.instantiate()
-	add_child(EndGamePanel)
-	EndGamePanel.SetTitle(Title, TitleColor)
-
-func ShowMessagePanel(Message:String)->void:
+func ShowMessagePanel(Message:String, ClickFoo:Callable = Callable())->void:
 	Global.Pause(true)
 	MessagePanel.show()
 	MessageTextLabel.text = Message
 	MessageOpened = true
+	if ClickFoo.is_valid():
+		MessageOkButton.pressed.connect(ClickFoo)
 
 func CloseMessagePanel()->void:
 	Global.Pause(false)
@@ -89,7 +85,7 @@ func _on_resume_button_pressed():
 
 func _on_main_menu_button_pressed():
 	Global.Pause(false)
-	Global.SetScene(load("res://Scenes/StartScene.tscn"))
+	Global.SetMainScene()
 
 func _on_exit_button_pressed():
 	Global.Exit()
