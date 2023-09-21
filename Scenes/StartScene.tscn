@@ -204,6 +204,12 @@ text = "Отменить"
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_i76na")
 autoplay = true
+bus = &"Effects"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_i76na")
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="InterfaceLayer/MenuControll/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="InterfaceLayer/MenuControll/VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
