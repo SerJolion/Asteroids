@@ -79,7 +79,6 @@ func RemoveEffectIcon(EffectName:String):
 		ActiveEffectIcons[EffectName].queue_free()
 		ActiveEffectIcons.erase(EffectName)
 
-
 func _on_resume_button_pressed():
 	ClosePauseMenu()
 

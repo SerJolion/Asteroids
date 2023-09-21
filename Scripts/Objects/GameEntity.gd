@@ -39,7 +39,7 @@ func _process(delta):
 
 func AddEffect(_Effect:Effect):
 	if not _Effect.Id in Effects.keys():
-		Effects[_Effect.Id] = _Effect
+		Effects[_Effect.Id] = _Effect.duplicate()
 		_Effect.Start(self,get_parent())
 		EffectAdded.emit(_Effect)
 
@@ -59,6 +59,7 @@ func ProcessEffects(delta:float):
 
 func RemoveEffect(EffectId:String):
 	if EffectId in Effects.keys():
+		var e:Effect
 		Effects[EffectId].End(self,get_parent())
 		Effects.erase(EffectId)
 		EffectRemoved.emit(EffectId)
@@ -103,4 +104,4 @@ func Destroy():
 		#var Drop:Node2D = DropScene.instantiate()
 		#get_parent().add_child(Drop)
 		#Drop.position = position
-	queue_free()
+	call_deferred('queue_free')

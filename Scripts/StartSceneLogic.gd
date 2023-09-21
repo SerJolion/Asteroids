@@ -6,7 +6,6 @@ extends Node
 @onready var OptionPanel:Panel = $InterfaceLayer/MenuControll/OptionPanel
 
 @onready var PlayerColorPicker:ColorPickerButton = $InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/PlayerColorContainer/PlayerColorPicker
-@onready var BackgroundColorPicker:ColorPickerButton = $InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/BackgroundColorContsiner/BackgroundColorPicker
 @onready var SoundSlider:HSlider = $InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/SoundSliderContainer/SoundSlider
 @onready var MusicSlider:HSlider = $InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/MusicSliderContainer/MusicSlider
 @onready var EffectSlider:HSlider = $InterfaceLayer/MenuControll/OptionPanel/MarginContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer/EffectSliderContainer/EffectSlider

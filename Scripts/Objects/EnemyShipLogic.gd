@@ -14,6 +14,7 @@ extends GameEntity
 @onready var BulletPosition:Marker2D = $BulletPosition
 @onready var EngineFireParticles:GPUParticles2D = $EngineFireParticles
 
+var SpawnablePowerups:Array = [ ]
 var CanShoot:bool = true 
 var Target:Node2D
 var AvoidObjects:Array = []
@@ -26,6 +27,9 @@ func _ready():
 	EnergyRestore.RegenValue = EnergyRestoreValue
 	EnergyRestore.Type = 1
 	AddEffect(EnergyRestore)
+	SpawnablePowerups.append(load("res://Objects/Powerups/Energy.tscn"))
+	SpawnablePowerups.append(load("res://Objects/Powerups/FuelPowerUp.tscn"))
+	SpawnablePowerups.append(load("res://Objects/Powerups/MedKit.tscn"))
 
 func _physics_process(delta):
 	if Target != null:
@@ -80,9 +84,9 @@ func Destroy():
 	get_parent().AddParticlesObject(30, true, 1.5, true, DestroyParticlesMaterial, position, GetColor())
 	var RNG:RandomNumberGenerator = RandomNumberGenerator.new()
 	var Chance:float = RNG.randf()
-	if Chance <= 0.5:
-		var Fuel:Node2D = load("res://Objects/Powerups/FuelPowerUp.tscn").instantiate()
-		get_parent().Add2DObject(Fuel, global_position)
+	if Chance <= 1.0:
+		var Loot:Node2D = SpawnablePowerups[RNG.randi_range(0, len(SpawnablePowerups)-1 )].instantiate()
+		get_parent().Add2DObject(Loot, global_position)
 	super.Destroy()
 
 func _on_shoot_area_body_entered(body):

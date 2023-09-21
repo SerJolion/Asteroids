@@ -13,7 +13,7 @@ func _ready():
 	World.PlayerDestroed.connect(PlayerLose)
 
 func _on_ateroid_spawn_timer_timeout():
-	World.SpawnAsteroid()
+	World.SpawnEnemy()
 	AsteroidSpawnTimer.start()
 
 func Pause(value:bool)->void:
