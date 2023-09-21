@@ -20,7 +20,7 @@ Global="*res://Scripts/Global.gd"
 
 [display]
 
-window/size/viewport_width=1024
+window/size/viewport_width=1366
 window/size/viewport_height=768
 
 [rendering]

@@ -19,12 +19,15 @@ signal FuelIsFull
 @export var EnergyRestoreSpeed:float = 0.5
 @export var ShootEnergyCost: float = 10.0
 
+
+var World:Node2D
 var Fuel:float = 1 : set = SetFuel
 
 func _ready():
 	Health = MaxHealth
 	Energy = MaxEnergy
 	AddEffect(load("res://Data/Effects/PlayerEnergyRegen.tres"))
+	World = get_parent()
 
 func _exit_tree():
 	get_parent().PlayerDestroed.emit()
@@ -45,14 +48,14 @@ func _physics_process(delta):
 	else:
 		Particles.emitting = false
 	
-	if position.x > DisplayWidth:
+	if position.x > World.MaxXCoord:
 		position = Vector2(0,position.y)
 	if position.x < 0:
-		position = Vector2(DisplayWidth,position.y)
-	if position.y > DisplayHeight:
+		position = Vector2(World.MaxXCoord,position.y)
+	if position.y > World.MaxYCoord:
 		position = Vector2(position.x, 0)
 	if position.y < 0:
-		position = Vector2(position.x, DisplayHeight)
+		position = Vector2(position.x, World.MaxYCoord)
 		
 	ProcessEffects(delta)
 

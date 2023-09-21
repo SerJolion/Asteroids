@@ -14,13 +14,9 @@ func ExecuteValue(expression:String, VarNames:Array, VarValues:Array):
 	return exp.execute(VarValues)
 
 func Start(Entity, World):
-#	var FinishValue = ExecuteValue(ProcessExpresion, ['Speed'], [Entity.Speed])
-#	if FinishValue != null:
-#		Entity.Speed = FinishValue
-	Entity.Speed += Value
+	if 'Speed' in Entity:
+		Entity.Speed += Value
 
 func End(Entity, World):
-#	var FinishValue = ExecuteValue(ProcessExpresion, ['Speed'], [Entity.Speed])
-#	if FinishValue != null:
-#		Entity.Speed -= FinishValue
-	Entity.Speed -= Value
+	if 'Speed' in Entity:
+		Entity.Speed -= Value

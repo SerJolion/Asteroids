@@ -10,20 +10,35 @@ signal PlayerDestroed
 @onready var Player:RigidBody2D = null
 @onready var PlayerStartPosition:Marker2D = $PlayerStartPosition
 @onready var AsteroidSpawnPoint:PathFollow2D = $AsteroidSpawnPath/AsteroidSpawPoint
+@onready var AsteroidSpawnPath:Path2D = $AsteroidSpawnPath
 
-@onready var MaxXCoord:int =  ProjectSettings.get_setting("display/window/size/viewport_width")
-@onready var MaxYCoord:int  = ProjectSettings.get_setting("display/window/size/viewport_height")
+@onready var MaxXCoord:int = 0
+@onready var MaxYCoord:int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_tree().root.size_changed.connect(SetMaxCoord)
 	Player = PlayerScene.instantiate()
 	add_child(Player)
 	Player.translate(PlayerStartPosition.position)
 	Player.SetColor(Global.PlayerColor)
+	SetMaxCoord()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func SetMaxCoord():
+	var WindowSize:Vector2 = DisplayServer.window_get_size()
+	MaxXCoord = WindowSize.x
+	MaxYCoord = WindowSize.y
+	AsteroidSpawnPath.curve.set_point_position(0, Vector2(-50, -50))
+	AsteroidSpawnPath.curve.set_point_position(4, Vector2(-50, -50))
+	AsteroidSpawnPath.curve.set_point_position(1, Vector2(-50, WindowSize.y + 50))
+	AsteroidSpawnPath.curve.set_point_position(2, Vector2(WindowSize.x + 50, WindowSize.y + 50))
+	AsteroidSpawnPath.curve.set_point_position(3, Vector2(WindowSize.x + 50, -50))
+	Player
 
 func GetPlayer()->RigidBody2D:
 	return Player

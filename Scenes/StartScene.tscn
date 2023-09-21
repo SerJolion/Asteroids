@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://casytkx2bbi4u"]
+[gd_scene load_steps=4 format=3 uid="uid://casytkx2bbi4u"]
 
 [ext_resource type="Script" path="res://Scripts/StartSceneLogic.gd" id="1_w5ffy"]
 [ext_resource type="Theme" uid="uid://dc26lc4mqpmgp" path="res://Themes/MainTheme.theme" id="2_3slrp"]
+[ext_resource type="AudioStream" uid="uid://bc2i50c45pv6u" path="res://Sound/StartSceneSound.mp3" id="3_i76na"]
 
 [node name="Root" type="Node"]
 process_mode = 3
@@ -201,6 +202,8 @@ focus_mode = 0
 text = "Отменить"
 
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_i76na")
+autoplay = true
 
 [connection signal="pressed" from="InterfaceLayer/MenuControll/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="InterfaceLayer/MenuControll/VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]

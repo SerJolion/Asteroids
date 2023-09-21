@@ -15,7 +15,7 @@
 [sub_resource type="Curve2D" id="Curve2D_n0bfm"]
 bake_interval = 10.0
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1088, 832, 0, 0, 0, 0, -64, 832, 0, 0, 0, 0, -64, -64, 0, 0, 0, 0, 1088, -64, 0, 0, 0, 0, 1088, 832)
+"points": PackedVector2Array(0, 0, 0, 0, -50, -50, 0, 0, 0, 0, -64, 811, 0, 0, 0, 0, 1106, 831, 0, 0, 0, 0, 1088, -56, 0, 0, 0, 0, -154, -113)
 }
 point_count = 5
 
@@ -50,8 +50,8 @@ position = Vector2(567, 355)
 curve = SubResource("Curve2D_n0bfm")
 
 [node name="AsteroidSpawPoint" type="PathFollow2D" parent="World/AsteroidSpawnPath"]
-position = Vector2(1088, 832)
-rotation = 3.14159
+position = Vector2(-50, -50)
+rotation = 1.58706
 
 [node name="EnemyShip" parent="World" instance=ExtResource("6_iqrp3")]
 position = Vector2(751, 262)
