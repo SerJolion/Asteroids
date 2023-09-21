@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://df0pvqa8am0gy"]
+[gd_scene load_steps=12 format=3 uid="uid://df0pvqa8am0gy"]
 
 [ext_resource type="Script" path="res://Scripts/WorldLogic.gd" id="1_iph1a"]
 [ext_resource type="Script" path="res://Scripts/GameLogic.gd" id="1_j73ng"]
@@ -9,8 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dvycy4exh5ir8" path="res://Objects/Powerups/Energy.tscn" id="6_3snsc"]
 [ext_resource type="PackedScene" uid="uid://co3suo3oilyus" path="res://Objects/Powerups/FuelPowerUp.tscn" id="6_evpha"]
 [ext_resource type="PackedScene" uid="uid://cnbqpn7sbdx8q" path="res://Objects/Enemies/EnemyShip.tscn" id="6_iqrp3"]
-[ext_resource type="Script" path="res://Scripts/Effects/SpeedUpEffect.gd" id="8_pc486"]
-[ext_resource type="PackedScene" uid="uid://4jkqk88ima8o" path="res://Objects/Powerups/Powerup.tscn" id="10_eorau"]
+[ext_resource type="PackedScene" uid="uid://c6dnr06drmu0h" path="res://Objects/Powerups/SpeedUpPowerup.tscn" id="10_cm3w0"]
 
 [sub_resource type="Curve2D" id="Curve2D_n0bfm"]
 bake_interval = 10.0
@@ -18,17 +17,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -50, -50, 0, 0, 0, 0, -64, 811, 0, 0, 0, 0, 1106, 831, 0, 0, 0, 0, 1088, -56, 0, 0, 0, 0, -154, -113)
 }
 point_count = 5
-
-[sub_resource type="Resource" id="Resource_5jaw4"]
-script = ExtResource("8_pc486")
-Value = 500.0
-Id = "speed_up_effect"
-DisplayName = "Скорость увеличина"
-Description = "Ваша скорость увеличина! "
-VisibleIcon = false
-PathToIcon = ""
-LifeTime = 10.0
-Type = 2
 
 [node name="Root" type="Node"]
 process_mode = 3
@@ -73,10 +61,6 @@ position = Vector2(325, 642)
 [node name="Energy2" parent="World" instance=ExtResource("6_3snsc")]
 position = Vector2(391, 671)
 
-[node name="Powerup2" parent="World" instance=ExtResource("10_eorau")]
-position = Vector2(246, 469)
-CurrentEffect = SubResource("Resource_5jaw4")
-
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 process_mode = 3
 
@@ -87,5 +71,8 @@ theme = ExtResource("5_o6kin")
 stream = ExtResource("4_lo31j")
 autoplay = true
 bus = &"Music"
+
+[node name="Powerup" parent="." instance=ExtResource("10_cm3w0")]
+position = Vector2(278, 524)
 
 [connection signal="timeout" from="AteroidSpawnTimer" to="." method="_on_ateroid_spawn_timer_timeout"]

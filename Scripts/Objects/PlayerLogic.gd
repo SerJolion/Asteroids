@@ -6,6 +6,7 @@ signal FuelIsFull
 @onready var BulletScene:PackedScene = load("res://Objects/Projectiles/Bullet.tscn")
 @onready var PewSound:AudioStreamMP3 = load("res://Sound/pew.mp3")
 @onready var AddEffectSound:AudioStreamMP3 = load("res://Sound/AddEffectSound.mp3")
+@onready var ContactDamageSound:AudioStreamMP3 = load("res://Sound/ContactDamageSound.mp3")
 
 @onready var Particles:GPUParticles2D = $Particles
 @onready var BulletPostition:Node2D = $BulletPosition
@@ -85,4 +86,6 @@ func _on_invincible_timer_timeout():
 
 func _on_body_entered(body):
 	if body.has_method('Hurt'):
+		AudioPlayer.stream = ContactDamageSound
+		AudioPlayer.play()
 		body.Hurt(ContactDamage)
