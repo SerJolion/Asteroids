@@ -3,7 +3,6 @@ extends Effect
 class_name SpeedUpEffect
 
 @export var Value:float = 0
-#@export_multiline var ProcessExpresion:String = ''
 
 func ExecuteValue(expression:String, VarNames:Array, VarValues:Array):
 	var exp:Expression = Expression.new()
@@ -16,7 +15,9 @@ func ExecuteValue(expression:String, VarNames:Array, VarValues:Array):
 func Start(Entity, World):
 	if 'Speed' in Entity:
 		Entity.Speed += Value
+		Entity.RotationSpeed += Value
 
 func End(Entity, World):
 	if 'Speed' in Entity:
 		Entity.Speed -= Value
+		Entity.RotationSpeed -= Value

@@ -6,8 +6,9 @@ signal HealthChanged(NewValue, MaxValue)
 signal EnergyChanged(NewValue, MaxValue)
 signal EffectAdded(effect:Effect)
 signal EffectRemoved(EffectId)
-signal Destroed
+signal Destroed(Id:String)
 
+@export var Id:String = ''
 @export_node_path("Polygon2D") var VisualNode:NodePath
 @export_node_path("CollisionPolygon2D") var ColiderNode:NodePath
 @export_node_path("AudioStreamPlayer2D") var AudioPlayerNode:NodePath

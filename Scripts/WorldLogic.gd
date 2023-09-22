@@ -1,6 +1,6 @@
 extends Node2D
 
-signal GameObjectDestroed(Score:int)
+signal GameObjectDestroed(Id:String)
 signal PlayerDestroed
 
 @onready var PlayerScene:PackedScene = load("res://Objects/player.tscn")
@@ -14,6 +14,9 @@ signal PlayerDestroed
 
 @onready var MaxXCoord:int = 0
 @onready var MaxYCoord:int = 0
+
+var AsteroidsDestroedCount:int = 0
+var EnemyShipsDestroed:int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -98,5 +101,10 @@ func Add2DObject(Obj:Node2D, Position:Vector2 = Vector2.ZERO)->void:
 	Obj.translate(Position)
 	print('Объект {0} добавлен в мир'.format([Obj.name]))
 
-func ObjectDestroed(Score:int):
-	GameObjectDestroed.emit(Score)
+func ObjectDestroed(Id:String):
+	GameObjectDestroed.emit(Id)
+	match Id:
+		'enemy_ship':
+			pass
+		'asteroid_large':
+			pass

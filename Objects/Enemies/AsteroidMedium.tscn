@@ -1,21 +1,21 @@
 [gd_scene load_steps=2 format=3 uid="uid://mjhb3l00ei48"]
 
-[ext_resource type="Script" path="res://Scripts/Objects/AsteroidLogic.gd" id="1_1y7sm"]
+[ext_resource type="Script" path="res://Scripts/Objects/AsteroidMediumLogic.gd" id="1_6nfp1"]
 
 [node name="AsteroidMedium" type="RigidBody2D"]
 mass = 3.0
 inertia = 3.0
 gravity_scale = 0.0
-script = ExtResource("1_1y7sm")
+script = ExtResource("1_6nfp1")
+Id = "asteroid_medium"
 VisualNode = NodePath("Visual")
 ColiderNode = NodePath("Colider")
 AudioPlayerNode = NodePath("AudioPlayer")
 Speed = 100.0
-RotationSpeed = 2.0
-MaxHealth = 20.0
+RotationSpeed = 1.0
+MaxHealth = 3.0
 MaxEnergy = 0.0
-ContactDamage = 10.0
-DropScenePath = "res://Objects/Powerups/FuelPowerUp.tscn"
+ContactDamage = 30.0
 
 [node name="Colider" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-31, -27, 9, -27, 33, -11, 25, 5, 33, 21, 25, 37, -23, 21)

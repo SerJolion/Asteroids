@@ -33,7 +33,7 @@ func Destroy():
 				NewSpawnObject.Speed = randf_range(100, 300)
 				NewSpawnObject.constant_force = $SpawnPoints.get_children()[i].transform.x.normalized() * NewSpawnObject.Speed
 				NewSpawnObject.RotationSpeed = randf_range(1.0, 3.0) 
-	get_parent().AddParticlesObject(30, true, 1.5, true, DestroyParticlesMaterial, position, Visual.color)
+	get_parent().AddParticlesObject(60, true, 1.5, true, DestroyParticlesMaterial, position, Visual.color)
 	get_parent().AddSoundObject('res://Sound/AsteroidDestroy.mp3', position)
 	super.Destroy()
 

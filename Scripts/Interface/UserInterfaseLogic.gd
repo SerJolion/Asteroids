@@ -5,19 +5,16 @@ extends Control
 @onready var FuelBar:ProgressBar = $MarginContainer/VBoxContainer/BarsContainer/FuelContainer/FuelBar
 @onready var EffectIconContainer:HBoxContainer = $MarginContainer/VBoxContainer/EffectsIconContainer
 @onready var PauseMEnuPanel:Panel = $MarginContainer/VBoxContainer/Main/PauseMenuPanel
-@onready var MessagePanel:Panel = $MarginContainer/VBoxContainer/Main/MesagePanel
-@onready var MessageTextLabel:RichTextLabel = $MarginContainer/VBoxContainer/Main/MesagePanel/MarginContainer/VBoxContainer/ScrollContainer/RichTextLabel
-@onready var MessageOkButton:Button = $MarginContainer/VBoxContainer/Main/MesagePanel/MarginContainer/VBoxContainer/MessageOkButton
 
 var PauseOpened:bool = false
+var CurrentMessagePanel:Control
 var MessageOpened:bool = false
 
 var ActiveEffectIcons:Dictionary = {}
 
 func _ready():
 	PauseMEnuPanel.hide()
-	MessagePanel.hide()
-	ShowMessagePanel('Тестовое сообщение', func():print('Тест работает'))
+	ShowMessagePanel('Тестовое сообщение', ShowMessagePanel.bind('Второе сообщение', func():print('test')))
 
 func _process(delta):
 	if Input.is_action_just_pressed('ui_cancel'):
@@ -44,17 +41,26 @@ func UpdateFuelBar(value:float, MaxValue:float)->void:
 	FuelBar.value = (value * 100)/MaxValue
 
 func ShowMessagePanel(Message:String, ClickFoo:Callable = Callable())->void:
+	var MessagePanel:Panel = load('res://Objects/Interfaces/MessagePanel.tscn').instantiate()
+	$MarginContainer/VBoxContainer/Main.add_child(MessagePanel)
+	MessagePanel.SetText(Message)
+	MessagePanel.SetCallback(ClickFoo)
+	MessagePanel.UserInterface = self
+	#MessagePanel.OkButton.pressed.connect(ClickFoo)
+	CurrentMessagePanel = MessagePanel
 	Global.Pause(true)
-	MessagePanel.show()
-	MessageTextLabel.text = Message
-	MessageOpened = true
-	if ClickFoo.is_valid():
-		MessageOkButton.pressed.connect(ClickFoo)
+	
+#	Global.Pause(true)
+#	MessagePanel.show()
+#	MessageTextLabel.text = Message
+#	MessageOpened = true
+#	if ClickFoo.is_valid():
+#		MessageOkButton.pressed.connect(ClickFoo)
 
 func CloseMessagePanel()->void:
-	Global.Pause(false)
-	MessagePanel.hide()
-	MessageOpened = false
+	if CurrentMessagePanel != null:
+		CurrentMessagePanel.queue_free()
+		Global.Pause(false)
 
 func ShowPauseMenu()->void:
 	Global.Pause(true)

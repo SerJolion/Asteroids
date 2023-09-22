@@ -30,6 +30,8 @@ func _ready():
 	SpawnablePowerups.append(load("res://Objects/Powerups/Energy.tscn"))
 	SpawnablePowerups.append(load("res://Objects/Powerups/FuelPowerUp.tscn"))
 	SpawnablePowerups.append(load("res://Objects/Powerups/MedKit.tscn"))
+	SpawnablePowerups.append(load("res://Objects/Powerups/SpeedUpPowerup.tscn"))
+	SpawnablePowerups.append(load("res://Objects/Powerups/FireDamagePowerUp.tscn"))
 
 func _physics_process(delta):
 	if Target != null:
