@@ -18,6 +18,7 @@ signal Destroed
 @export var MaxHealth:float = 100.0
 @export var MaxEnergy:float = 100.0
 @export var ContactDamage:float = 50.0
+@export var CanTakePowerups:bool = false
 @export_file('*.tscn') var DropScenePath:String
 
 @onready var Visual:Polygon2D = get_node(VisualNode)

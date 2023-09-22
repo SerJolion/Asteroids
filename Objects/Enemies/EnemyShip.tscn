@@ -20,6 +20,7 @@ AudioPlayerNode = NodePath("AudioPlayer")
 MaxHealth = 30.0
 MaxEnergy = 10.0
 ContactDamage = 20.0
+CanTakePowerups = true
 
 [node name="Colider" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-8, -16, -8, 16, 18, 0)

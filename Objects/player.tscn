@@ -21,6 +21,7 @@ VisualNode = NodePath("Visual")
 ColiderNode = NodePath("Colider")
 AudioPlayerNode = NodePath("AudioPlayer")
 ContactDamage = 20.0
+CanTakePowerups = true
 
 [node name="Visual" type="Polygon2D" parent="."]
 polygon = PackedVector2Array(10, 0, -6, -8, -6, 8)

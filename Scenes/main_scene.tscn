@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://df0pvqa8am0gy"]
+[gd_scene load_steps=15 format=3 uid="uid://ykpfby0lkt08"]
 
 [ext_resource type="Script" path="res://Scripts/WorldLogic.gd" id="1_iph1a"]
 [ext_resource type="Script" path="res://Scripts/GameLogic.gd" id="1_j73ng"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dvycy4exh5ir8" path="res://Objects/Powerups/Energy.tscn" id="6_3snsc"]
 [ext_resource type="PackedScene" uid="uid://co3suo3oilyus" path="res://Objects/Powerups/FuelPowerUp.tscn" id="6_evpha"]
 [ext_resource type="PackedScene" uid="uid://cnbqpn7sbdx8q" path="res://Objects/Enemies/EnemyShip.tscn" id="6_iqrp3"]
+[ext_resource type="Shader" path="res://Shaders/BackgroundShader.gdshader" id="7_beofp"]
 [ext_resource type="PackedScene" uid="uid://c6dnr06drmu0h" path="res://Objects/Powerups/SpeedUpPowerup.tscn" id="10_cm3w0"]
+[ext_resource type="PackedScene" uid="uid://bw4yray3kiuvv" path="res://Objects/Powerups/FireDamagePowerUp.tscn" id="12_rvs41"]
 
 [sub_resource type="Curve2D" id="Curve2D_n0bfm"]
 bake_interval = 10.0
@@ -17,6 +19,20 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -50, -50, 0, 0, 0, 0, -64, 811, 0, 0, 0, 0, 1106, 831, 0, 0, 0, 0, 1088, -56, 0, 0, 0, 0, -154, -113)
 }
 point_count = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n7onh"]
+shader = ExtResource("7_beofp")
+shader_parameter/dimensions = Vector2(1024, 600)
+shader_parameter/small_stars = 50.0
+shader_parameter/small_stars_far_size = 0.2
+shader_parameter/small_stars_near_size = 0.5
+shader_parameter/large_stars = 0.0
+shader_parameter/large_stars_far_size = 0.1
+shader_parameter/large_stars_near_size = 0.5
+shader_parameter/far_stars_color = Color(0.498039, 0.980392, 1, 1)
+shader_parameter/near_stars_color = Color(0.227451, 0.227451, 0.223529, 1)
+shader_parameter/base_scroll_speed = 0.0
+shader_parameter/additional_scroll_speed = 0.05
 
 [node name="Root" type="Node"]
 process_mode = 3
@@ -61,6 +77,19 @@ position = Vector2(325, 642)
 [node name="Energy2" parent="World" instance=ExtResource("6_3snsc")]
 position = Vector2(391, 671)
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="World"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="World/ParallaxBackground"]
+
+[node name="ColorRect" type="ColorRect" parent="World/ParallaxBackground/ParallaxLayer"]
+material = SubResource("ShaderMaterial_n7onh")
+offset_right = 1358.0
+offset_bottom = 761.0
+color = Color(0, 0, 0, 1)
+
+[node name="Powerup2" parent="World" instance=ExtResource("10_cm3w0")]
+position = Vector2(278, 524)
+
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 process_mode = 3
 
@@ -72,7 +101,7 @@ stream = ExtResource("4_lo31j")
 autoplay = true
 bus = &"Music"
 
-[node name="Powerup" parent="." instance=ExtResource("10_cm3w0")]
-position = Vector2(278, 524)
+[node name="FireDamagePowerUp" parent="." instance=ExtResource("12_rvs41")]
+position = Vector2(254, 604)
 
 [connection signal="timeout" from="AteroidSpawnTimer" to="." method="_on_ateroid_spawn_timer_timeout"]

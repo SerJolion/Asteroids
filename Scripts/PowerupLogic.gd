@@ -6,6 +6,7 @@ func _process(delta):
 	pass
 
 func _on_pickup_area_body_entered(body):
-	if body.has_method('AddEffect'):
-		body.AddEffect(CurrentEffect)
-		queue_free()
+	if body.CanTakePowerups:
+		if body.has_method('AddEffect'):
+			body.AddEffect(CurrentEffect)
+			queue_free()

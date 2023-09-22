@@ -187,6 +187,7 @@ focus_mode = 0
 text = "Выйти из игры"
 
 [node name="MesagePanel" type="Panel" parent="MarginContainer/VBoxContainer/Main"]
+visible = false
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 1
 anchors_preset = 8
