@@ -3,6 +3,11 @@ extends GameEntity
 signal FuelChanget(NewValue, MaxValue)
 signal FuelIsFull
 
+@export var FireDamage:float = 10
+@export var MaxFuel:float = 100.0
+@export var EnergyRestoreSpeed:float = 0.5
+@export var ShootEnergyCost: float = 10.0
+
 @onready var BulletScene:PackedScene = load("res://Objects/Projectiles/Bullet.tscn")
 @onready var PewSound:AudioStreamMP3 = load("res://Sound/pew.mp3")
 @onready var AddEffectSound:AudioStreamMP3 = load("res://Sound/AddEffectSound.mp3")
@@ -11,15 +16,6 @@ signal FuelIsFull
 @onready var Particles:GPUParticles2D = $Particles
 @onready var BulletPostition:Node2D = $BulletPosition
 @onready var InvincibleTimer:Timer = $InvincibleTimer
-#@onready var AudioPlayer:AudioStreamPlayer2D = $AudioPlayer
-@onready var DisplayWidth:int =  ProjectSettings.get_setting("display/window/size/viewport_width")
-@onready var DisplayHeight:int = ProjectSettings.get_setting("display/window/size/viewport_height")
-
-@export var FireDamage:float = 10
-@export var MaxFuel:float = 100.0
-@export var EnergyRestoreSpeed:float = 0.5
-@export var ShootEnergyCost: float = 10.0
-
 
 var World:Node2D
 var Fuel:float = 1 : set = SetFuel
@@ -29,9 +25,6 @@ func _ready():
 	Energy = MaxEnergy
 	AddEffect(load("res://Data/Effects/PlayerEnergyRegen.tres"))
 	World = get_parent()
-
-func _exit_tree():
-	get_parent().PlayerDestroed.emit()
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
@@ -81,6 +74,10 @@ func Shoot():
 		Bullet.rotation = rotation
 		PlaySound(PewSound)
 
+func Destroy():
+	get_parent().PlayerDestroed.emit()
+	super.Destroy()
+
 func _on_invincible_timer_timeout():
 	Invincible = false
 
@@ -89,3 +86,5 @@ func _on_body_entered(body):
 		AudioPlayer.stream = ContactDamageSound
 		AudioPlayer.play()
 		body.Hurt(ContactDamage)
+		set_deferred('Invincible', true)
+		InvincibleTimer.start()

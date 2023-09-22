@@ -40,6 +40,7 @@ lifetime = 0.5
 position = Vector2(19, 0)
 
 [node name="InvincibleTimer" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
 bus = &"Effects"

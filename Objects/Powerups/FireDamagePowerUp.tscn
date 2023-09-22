@@ -9,8 +9,8 @@ Value = 10.0
 Id = "fire_damage_up"
 DisplayName = "Увеличение урона"
 Description = "Ваш урон увеличен"
-VisibleIcon = false
-PathToIcon = ""
+VisibleIcon = true
+PathToIcon = "res://Sprites/DamageUpEffectIcon.png"
 LifeTime = 20.0
 Type = 2
 
@@ -30,7 +30,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [PackedVector2Array(0, -24, -8, -16, -16, -16, -16, -8, -24, 0, -16, 8, -16, 16, -8, 16, 0, 24, 8, 16, 16, 16, 16, 8, 24, 0, 16, -8, 16, -16, 8, -16), PackedVector2Array(0, -16, -8, -16, -16, -16, -16, -8, -16, 0, -16, 8, -16, 16, -8, 16, 0, 16, 8, 16, 16, 16, 16, 8, 16, 0, 16, -8, 16, -16, 8, -16), PackedVector2Array(0, -24, -8, -16, -16, -16, -16, -8, -24, 0, -16, 8, -16, 16, -8, 16, 0, 24, 8, 16, 16, 16, 16, 8, 24, 0, 16, -8, 16, -16, 8, -16)]
+"values": [PackedVector2Array(0, -24, -8, -16, -12, -12, -16, -8, -24, 0, -16, 8, -12, 12, -8, 16, 0, 24, 8, 16, 12, 12, 16, 8, 24, 0, 16, -8, 12, -12, 8, -16), PackedVector2Array(0, -16, -8, -16, -16, -16, -16, -8, -16, 0, -16, 8, -16, 16, -8, 16, 0, 16, 8, 16, 16, 16, 16, 8, 16, 0, 16, -8, 16, -16, 8, -16), PackedVector2Array(0, -24, -8, -16, -12, -12, -16, -8, -24, 0, -16, 8, -12, 12, -8, 16, 0, 24, 8, 16, 12, 12, 16, 8, 24, 0, 16, -8, 12, -12, 8, -16)]
 }
 
 [sub_resource type="Animation" id="Animation_2njpr"]
