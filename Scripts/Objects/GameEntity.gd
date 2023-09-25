@@ -24,6 +24,7 @@ signal Destroed(Id:String)
 @onready var Visual:Polygon2D = get_node(VisualNode)
 @onready var Colider:CollisionPolygon2D = get_node(ColiderNode)
 @onready var AudioPlayer:AudioStreamPlayer2D = get_node(AudioPlayerNode)
+@onready var World:Node2D = get_parent()
 
 var Health:float = MaxHealth : set = SetHealth
 var Energy:float = MaxEnergy : set = SetEnergy
@@ -99,5 +100,6 @@ func Hurt(Damage:float):
 		Health -= Damage
 
 func Destroy():
+	World.DestroyGameEntity(self)
 	Destroed.emit(Id)
-	call_deferred('queue_free')
+	#call_deferred('queue_free')

@@ -17,14 +17,14 @@ signal FuelIsFull
 @onready var BulletPostition:Node2D = $BulletPosition
 @onready var InvincibleTimer:Timer = $InvincibleTimer
 
-var World:Node2D
+#var World:Node2D
 var Fuel:float = 1 : set = SetFuel
 
 func _ready():
 	Health = MaxHealth
 	Energy = MaxEnergy
 	AddEffect(load("res://Data/Effects/PlayerEnergyRegen.tres"))
-	World = get_parent()
+	#World = get_parent()
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept"):

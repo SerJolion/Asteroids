@@ -66,6 +66,7 @@ theme = ExtResource("2_mc6i4")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tooltip_text = "Это прочность твоего корабля. \\n Как тольуо она станет равна 0 ты проиграешь."
 theme = ExtResource("2_mc6i4")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ttdh3")
 value = 100.0

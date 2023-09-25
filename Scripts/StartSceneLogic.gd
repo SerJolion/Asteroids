@@ -20,7 +20,6 @@ func OpenOption():
 	MusicSlider.value = AudioServer.get_bus_volume_db(AudioServer.get_bus_index('Music'))
 	EffectSlider.value = AudioServer.get_bus_volume_db(AudioServer.get_bus_index('Effects'))
 	OptionPanel.show()
-	
 
 func CloseOption():
 	OptionPanel.hide()

@@ -19,7 +19,6 @@ signal PlayerDestroed
 var AsteroidsDestroedCount:int = 0
 var EnemyShipsDestroed:int = 0
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().root.size_changed.connect(SetMaxCoord)
 	Player = PlayerScene.instantiate()
@@ -27,11 +26,6 @@ func _ready():
 	Player.translate(PlayerStartPosition.position)
 	Player.SetColor(Global.PlayerColor)
 	SetMaxCoord()
-	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func SetMaxCoord():
 	var WindowSize:Vector2 = DisplayServer.window_get_size()
@@ -70,12 +64,12 @@ func SpawnEnemy()->void:
 		AddGameEntity(NewAsteroid, AsteroidSpawnPoint.position)
 
 func AddGameEntity(gameEntity:GameEntity, Position:Vector2=Vector2.ZERO):
-	gameEntity.Destroed.connect(ObjectDestroed)
 	Add2DObject(gameEntity, Position)
 	GameEntitySpawned.emit(gameEntity.Id)
 
 func AddParticlesObject(Count:int, OneShot:bool, LifeTime:float, Explosion:bool ,ParticleMaterial:ParticleProcessMaterial, Position:Vector2, color:Color=Color.WHITE)->void:
 	var Particles:GPUParticles2D = GPUParticles2D.new()
+	Particles.name = 'ParticlesObject'
 	Particles.amount = Count
 	Particles.lifetime = LifeTime
 	if OneShot:
@@ -89,6 +83,7 @@ func AddParticlesObject(Count:int, OneShot:bool, LifeTime:float, Explosion:bool 
 
 func AddSoundObject(SoundPath:String, Position:Vector2):
 	var SoundObject:AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+	SoundObject.name = 'SoundObject'
 	SoundObject.finished.connect(SoundObject.queue_free)
 	SoundObject.stream = load(SoundPath)
 	SoundObject.autoplay = true
@@ -97,14 +92,10 @@ func AddSoundObject(SoundPath:String, Position:Vector2):
 
 func Add2DObject(Obj:Node2D, Position:Vector2 = Vector2.ZERO)->void:
 	call_deferred("add_child",Obj)
-	#add_child(Obj)
 	Obj.translate(Position)
 	print('Объект {0} добавлен в мир'.format([Obj.name]))
 
-func ObjectDestroed(Id:String):
-	GameObjectDestroed.emit(Id)
-	match Id:
-		'enemy_ship':
-			pass
-		'asteroid_large':
-			pass
+func DestroyGameEntity(gameEntity:GameEntity):
+	GameObjectDestroed.emit(gameEntity.Id)
+	gameEntity.call_deferred('queue_free')
+	print('Объект {0} уничтожен'.format([gameEntity.name]))

@@ -9,7 +9,6 @@ extends GameEntity
 
 @onready var SpawnPointsContainer:Node2D = $SpawnPoints
 
-#var Direction:Vector2
 var MaxXCoord:int
 var MaxYCoord:int
 
@@ -27,8 +26,6 @@ func Destroy():
 		for i in 3:
 			var Scene:PackedScene = load(SpawnObjectsScenes[i])
 			var NewSpawnObject:Node2D = Scene.instantiate()
-			#get_parent().add_child(NewSpawnObject)
-			#NewSpawnObject.translate($SpawnPoints.get_children()[i].global_position)
 			if 'SpawnPointsContainer' in NewSpawnObject:
 				NewSpawnObject.Speed = randf_range(100, 300)
 				NewSpawnObject.constant_force = $SpawnPoints.get_children()[i].transform.x.normalized() * NewSpawnObject.Speed

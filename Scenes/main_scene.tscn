@@ -31,12 +31,24 @@ shader_parameter/additional_scroll_speed = 0.05
 [node name="Root" type="Node"]
 process_mode = 3
 script = ExtResource("1_j73ng")
-FirstMessageText = "Тестовое сообщение :3"
-SecondMessageText = "Второе сообщение :3"
+FirstMessageText = "[p align=center]Добро пожаловать в [color=yellow]Астероиды[/color]. Эта игра – один из примеров того, что вы сможете создать, посещая занятия [color=yellow]школьного кванториума.[/color] Направление создание видеоигр поможет вам в этом! Для начала предлагаю сыграть и опробовать самому один из результатов данных занятий.[/p]
+ 
+[p align=center]Ваш корабль застрял без звездного топлива в поле астероидов. Вам необходимо [color=purple]наполнить бак минералами из космических камней[/color]. Как только вы это сделаете, то сразу победите. Топливные минералы можно добыть, расстреливая астероиды из бластерного оружия.[/p]
+ 
+[p align=center][color=yellow]Для продолжения нажмите кнопку хорошо[/color][/p]
+"
+SecondMessageText = "Управление:
+[img=30]res://Sprites/KeyIcon/pxkw_arrow_left.png[/img][img=30]res://Sprites/KeyIcon/pxkw_arrow_right.png[/img] - поворот корабля
+ 
+[img=30]res://Sprites/KeyIcon/pxkw_arrow_up.png[/img][img=30]res://Sprites/KeyIcon/pxkw_arrow_down.png[/img] - лететь вперед и назад
+ 
+[img=60]res://Sprites/KeyIcon/pxkw_space_2.png[/img] - стрелять
+ 
+[img=60]res://Sprites/KeyIcon/pxkw_escape.png[/img] - пауза"
 VinMessageText = "Ты выиграл!"
 LoseMessageText = "Ты проиграл!"
 EndMessageText = "Вот и конец игры"
-FirstEnemyMessageText = "Вот твой первый враг!	"
+FirstEnemyMessageText = "[p align=center]А вот и [color=red]первый враг![/color] Ты ведь не думал, что здесь будут только астероиды? Вражеский корабль постарается уничтожить тебя. Однако, если ты сможешь постаять за себя, то тебя ждет [color=yellow]награда[/color], которая поможет тебе выжить.[/p]"
 FirstPowerUpMessageText = "Вот твоя первая помощь!"
 
 [node name="AteroidSpawnTimer" type="Timer" parent="."]
@@ -62,17 +74,23 @@ rotation = 1.58706
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="World/ParallaxBackground"]
 
-[node name="ColorRect" type="ColorRect" parent="World/ParallaxBackground/ParallaxLayer"]
-material = SubResource("ShaderMaterial_n7onh")
-offset_right = 1358.0
-offset_bottom = 761.0
-color = Color(0, 0, 0, 1)
-
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 process_mode = 3
 
 [node name="UserInterfase" parent="InterfaceLayer" instance=ExtResource("4_qcs80")]
 theme = ExtResource("5_o6kin")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+material = SubResource("ShaderMaterial_n7onh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="AmbientSoundPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_lo31j")

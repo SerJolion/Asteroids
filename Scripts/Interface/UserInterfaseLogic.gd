@@ -5,6 +5,8 @@ extends Control
 @onready var FuelBar:ProgressBar = $MarginContainer/VBoxContainer/BarsContainer/FuelContainer/FuelBar
 @onready var EffectIconContainer:HBoxContainer = $MarginContainer/VBoxContainer/EffectsIconContainer
 @onready var PauseMEnuPanel:Panel = $MarginContainer/VBoxContainer/Main/PauseMenuPanel
+@onready var MessagePanelScene:PackedScene = load('res://Objects/Interfaces/MessagePanel.tscn')
+
 
 var PauseOpened:bool = false
 var CurrentMessagePanel:Control
@@ -14,11 +16,13 @@ var ActiveEffectIcons:Dictionary = {}
 
 func _ready():
 	PauseMEnuPanel.hide()
-	#ShowMessagePanel('Тестовое сообщение', ShowMessagePanel.bind('Второе сообщение', func():print('test')))
+	HealthBar.tooltip_text = ''' Это прочность твоего корабля.\nКак тольуо она станет равна 0 ты проиграешь. '''
+	EnergyBar.tooltip_text = '''Это энергия твоего корабля.\nЭнергия необходима для совершение выстрелов '''
+	FuelBar.tooltip_text = '''Это топливо твоего корабля.\nДля того, чтобы улететь с этого астероидного \nполя нобходимо заполнить бак топливом'''
 
 func _process(delta):
 	if Input.is_action_just_pressed('ui_cancel'):
-		if not MessageOpened:
+		if CurrentMessagePanel == null:
 			if PauseOpened:
 				ClosePauseMenu()
 			else:
@@ -41,21 +45,14 @@ func UpdateFuelBar(value:float, MaxValue:float)->void:
 	FuelBar.value = (value * 100)/MaxValue
 
 func ShowMessagePanel(Message:String, ClickFoo:Callable = Callable())->void:
-	var MessagePanel:Panel = load('res://Objects/Interfaces/MessagePanel.tscn').instantiate()
+	await get_tree().create_timer(0.1).timeout
+	var MessagePanel:Panel = MessagePanelScene.instantiate()
+	MessagePanel.UserInterface = self
+	CurrentMessagePanel = MessagePanel
 	$MarginContainer/VBoxContainer/Main.add_child(MessagePanel)
 	MessagePanel.SetText(Message)
 	MessagePanel.SetCallback(ClickFoo)
-	MessagePanel.UserInterface = self
-	#MessagePanel.OkButton.pressed.connect(ClickFoo)
-	CurrentMessagePanel = MessagePanel
 	Global.Pause(true)
-	
-#	Global.Pause(true)
-#	MessagePanel.show()
-#	MessageTextLabel.text = Message
-#	MessageOpened = true
-#	if ClickFoo.is_valid():
-#		MessageOkButton.pressed.connect(ClickFoo)
 
 func CloseMessagePanel()->void:
 	if CurrentMessagePanel != null:
@@ -77,6 +74,7 @@ func AddActiveEffectIcon(effect:Effect):
 		var NewIcon:TextureRect = TextureRect.new()
 		NewIcon.name = effect.Id+'_icon'
 		NewIcon.texture = load(effect.PathToIcon)
+		NewIcon.tooltip_text = '''{0}\n{1}'''.format([effect.DisplayName, effect.Description])
 		EffectIconContainer.add_child(NewIcon)
 		ActiveEffectIcons[effect.Id] = NewIcon
 
