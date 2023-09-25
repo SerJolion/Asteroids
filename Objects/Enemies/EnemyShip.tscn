@@ -14,6 +14,7 @@ gravity_scale = 0.0
 script = ExtResource("1_lncbu")
 ShootEnergyCost = 9.0
 EnergyRestoreValue = 0.05
+Id = "enemy_ship"
 VisualNode = NodePath("Visual")
 ColiderNode = NodePath("Colider")
 AudioPlayerNode = NodePath("AudioPlayer")

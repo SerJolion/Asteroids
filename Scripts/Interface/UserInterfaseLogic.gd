@@ -14,7 +14,7 @@ var ActiveEffectIcons:Dictionary = {}
 
 func _ready():
 	PauseMEnuPanel.hide()
-	ShowMessagePanel('Тестовое сообщение', ShowMessagePanel.bind('Второе сообщение', func():print('test')))
+	#ShowMessagePanel('Тестовое сообщение', ShowMessagePanel.bind('Второе сообщение', func():print('test')))
 
 func _process(delta):
 	if Input.is_action_just_pressed('ui_cancel'):

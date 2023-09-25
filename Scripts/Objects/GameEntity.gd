@@ -99,5 +99,5 @@ func Hurt(Damage:float):
 		Health -= Damage
 
 func Destroy():
-	Destroed.emit()
+	Destroed.emit(Id)
 	call_deferred('queue_free')

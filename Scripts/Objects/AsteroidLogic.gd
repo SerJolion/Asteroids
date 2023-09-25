@@ -27,12 +27,13 @@ func Destroy():
 		for i in 3:
 			var Scene:PackedScene = load(SpawnObjectsScenes[i])
 			var NewSpawnObject:Node2D = Scene.instantiate()
-			get_parent().add_child(NewSpawnObject)
-			NewSpawnObject.translate($SpawnPoints.get_children()[i].global_position)
+			#get_parent().add_child(NewSpawnObject)
+			#NewSpawnObject.translate($SpawnPoints.get_children()[i].global_position)
 			if 'SpawnPointsContainer' in NewSpawnObject:
 				NewSpawnObject.Speed = randf_range(100, 300)
 				NewSpawnObject.constant_force = $SpawnPoints.get_children()[i].transform.x.normalized() * NewSpawnObject.Speed
 				NewSpawnObject.RotationSpeed = randf_range(1.0, 3.0) 
+			get_parent().AddGameEntity(NewSpawnObject, $SpawnPoints.get_children()[i].global_position)
 	get_parent().AddParticlesObject(60, true, 1.5, true, DestroyParticlesMaterial, position, Visual.color)
 	get_parent().AddSoundObject('res://Sound/AsteroidDestroy.mp3', position)
 	super.Destroy()

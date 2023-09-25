@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ykpfby0lkt08"]
+[gd_scene load_steps=10 format=3 uid="uid://ykpfby0lkt08"]
 
 [ext_resource type="Script" path="res://Scripts/WorldLogic.gd" id="1_iph1a"]
 [ext_resource type="Script" path="res://Scripts/GameLogic.gd" id="1_j73ng"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d4mhe8clsfr08" path="res://Objects/Interfaces/UserInterfase.tscn" id="4_qcs80"]
 [ext_resource type="Theme" uid="uid://dc26lc4mqpmgp" path="res://Themes/MainTheme.theme" id="5_o6kin"]
 [ext_resource type="Shader" path="res://Shaders/BackgroundShader.gdshader" id="7_beofp"]
+[ext_resource type="PackedScene" uid="uid://c6dnr06drmu0h" path="res://Objects/Powerups/SpeedUpPowerup.tscn" id="10_cm3w0"]
 
 [sub_resource type="Curve2D" id="Curve2D_n0bfm"]
 bake_interval = 10.0
@@ -67,6 +68,9 @@ material = SubResource("ShaderMaterial_n7onh")
 offset_right = 1358.0
 offset_bottom = 761.0
 color = Color(0, 0, 0, 1)
+
+[node name="Powerup2" parent="World" instance=ExtResource("10_cm3w0")]
+position = Vector2(278, 524)
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 process_mode = 3

@@ -1,6 +1,6 @@
 extends Panel
 
-@onready var TitleLibel:Label = $MarginContainer/VBoxContainer/Label
+#@onready var TitleLibel:Label = $MarginContainer/VBoxContainer/Label
 @onready var TextLabel:RichTextLabel = $MarginContainer/VBoxContainer/ScrollContainer/RichTextLabel
 @onready var OkButton:Button = $MarginContainer/VBoxContainer/MessageOkButton
 

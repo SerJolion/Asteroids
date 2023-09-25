@@ -1,5 +1,6 @@
 extends Node2D
 
+signal GameEntitySpawned(Id:String)
 signal GameObjectDestroed(Id:String)
 signal PlayerDestroed
 
@@ -50,29 +51,28 @@ func SpawnEnemy()->void:
 	AsteroidSpawnPoint.progress_ratio = randf()
 	if randf() <= 0.4:
 		var NewShip:RigidBody2D = EnemyShipScene.instantiate()
-		NewShip.translate(AsteroidSpawnPoint.global_position)
 		NewShip.Target = Player
-		add_child(NewShip)
+		AddGameEntity(NewShip, AsteroidSpawnPoint.global_position)
 	else:
 		var NewAsteroid:RigidBody2D = AsteroidSCene.instantiate()
-		add_child(NewAsteroid)
-		NewAsteroid.translate(AsteroidSpawnPoint.position)
 		var Direction:Vector2 = Vector2.ZERO
 		if AsteroidSpawnPoint.position.x > MaxXCoord:
 			Direction.x = -1
-			#Direction.y = randi_range(0,MaxYCoord)
 		if AsteroidSpawnPoint.position.x <= 0:
 			Direction.x = 1
-			#Direction.y = randi_range(0,MaxYCoord)
 		if AsteroidSpawnPoint.position.y > MaxYCoord:
-			#Direction.x = randi_range(0,MaxXCoord)
 			Direction.y = -1
 		if AsteroidSpawnPoint.position.y <= 0:
-			#Direction.x = randi_range(0,MaxXCoord)
 			Direction.y = 1
 		NewAsteroid.Speed = randf_range(50.0, 200.0)
 		NewAsteroid.constant_force = Direction.normalized() * NewAsteroid.Speed
 		NewAsteroid.RotationSpeed = randf_range(1.0, 3.0)
+		AddGameEntity(NewAsteroid, AsteroidSpawnPoint.position)
+
+func AddGameEntity(gameEntity:GameEntity, Position:Vector2=Vector2.ZERO):
+	gameEntity.Destroed.connect(ObjectDestroed)
+	Add2DObject(gameEntity, Position)
+	GameEntitySpawned.emit(gameEntity.Id)
 
 func AddParticlesObject(Count:int, OneShot:bool, LifeTime:float, Explosion:bool ,ParticleMaterial:ParticleProcessMaterial, Position:Vector2, color:Color=Color.WHITE)->void:
 	var Particles:GPUParticles2D = GPUParticles2D.new()
