@@ -22,7 +22,7 @@ uniform sampler2D small_stars_texture : source_color, filter_nearest_mipmap;
 uniform sampler2D large_stars_texture : source_color, filter_nearest_mipmap;
 
 uniform float base_scroll_speed : hint_range(0.0, 1.0, 0.01) = 0.05;
-uniform float additional_scroll_speed : hint_range(0.01, 1.0, 0.01) = 0.05;
+uniform float additional_scroll_speed : hint_range(0.0, 1.0, 0.01) = 0.05;
 
 float greater_than(float x, float y) {
 	return max(sign(x - y), 0.0);

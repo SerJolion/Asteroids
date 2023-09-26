@@ -11,6 +11,8 @@ size = Vector2(211, 54)
 
 [node name="EnemyShip" type="RigidBody2D"]
 gravity_scale = 0.0
+max_contacts_reported = 3
+contact_monitor = true
 script = ExtResource("1_lncbu")
 ShootEnergyCost = 9.0
 EnergyRestoreValue = 0.05
