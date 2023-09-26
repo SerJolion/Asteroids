@@ -21,7 +21,6 @@ Id = "player"
 VisualNode = NodePath("Visual")
 ColiderNode = NodePath("Colider")
 AudioPlayerNode = NodePath("AudioPlayer")
-MaxHealth = 10.0
 ContactDamage = 20.0
 CanTakePowerups = true
 
