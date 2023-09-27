@@ -47,5 +47,7 @@ wait_time = 0.5
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
 bus = &"Effects"
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="InvincibleTimer" to="." method="_on_invincible_timer_timeout"]
