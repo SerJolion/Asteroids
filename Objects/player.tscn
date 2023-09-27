@@ -25,20 +25,21 @@ ContactDamage = 20.0
 CanTakePowerups = true
 
 [node name="Visual" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(10, 0, -6, -8, -6, 8)
+scale = Vector2(1.5, 1.5)
+polygon = PackedVector2Array(16, 0, 0, -3, -4, -6, -4, 6, 0, 3)
 
 [node name="Colider" type="CollisionPolygon2D" parent="."]
 self_modulate = Color(0, 1, 0, 1)
-polygon = PackedVector2Array(9, 0, -5, -7, -5, 7)
+polygon = PackedVector2Array(23, 0, -6, -5, -6, 5)
 
 [node name="Particles" type="GPUParticles2D" parent="."]
-position = Vector2(-7, 0)
+position = Vector2(-8, 0)
 amount = 20
 process_material = ExtResource("2_vig8w")
 lifetime = 0.5
 
 [node name="BulletPosition" type="Node2D" parent="."]
-position = Vector2(19, 0)
+position = Vector2(27, 0)
 
 [node name="InvincibleTimer" type="Timer" parent="."]
 wait_time = 0.5
